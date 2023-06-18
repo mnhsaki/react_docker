@@ -4,10 +4,17 @@ import { IProfileDetails, profileDetailsInitValues as initialValues } from '../S
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
 import { Button } from 'react-bootstrap'
-import DatePicker from 'react-datepicker';
+
 import 'react-datepicker/dist/react-datepicker.css';
 import GroupSMSModal from './Modal/GroupSMSModal'
 import { Link } from 'react-router-dom'
+import 'react-datepicker/dist/react-datepicker.css';
+import DateTimePicker from 'react-datetime-picker';
+import 'react-datetime-picker/dist/DateTimePicker.css';
+import 'react-calendar/dist/Calendar.css';
+import 'react-clock/dist/Clock.css';
+import Select from 'react-select'
+
 
 const profileDetailsSchema = Yup.object().shape({
   fName: Yup.string().required('First name is required'),
@@ -68,15 +75,26 @@ const GroupSMS: React.FC = () => {
       setSmsType(1);
     }
   };
-
   const [selectedCommunication, setSelectedCommunication] = useState(data.communications?.email ? 'email' : 'phone');
   const [disableDateTime, setDisableDateTime] = useState(selectedCommunication === 'email');
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+  const [value, onChange] = useState(new Date());
 
   const handleCancel = () => {
     formik.resetForm();
     // Additional logic or redirection if needed
   };
+  const optionsforSenderID = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+  ]
+  const optionsforGroupID = [
+    { value: '001', label: '001' },
+    { value: '002', label: '002' },
+    { value: '003', label: '003' }
+  ]
+
   return (
     <div className='card mb-5 mb-xl-10'>
       <div
@@ -111,15 +129,7 @@ const GroupSMS: React.FC = () => {
               </label>
 
               <div className='col-lg-8 fv-row'>
-                <select
-                  className='form-select form-select-solid form-select-lg '
-                  {...formik.getFieldProps('senderid')}
-                >
-                  <option value=''>Select Sender ID</option>
-                  <option value='AF'>007</option>
-                  <option value='AL'>009</option>
-
-                </select>
+                <Select options={optionsforSenderID} />
                 {formik.touched.senderid && formik.errors.senderid && (
                   <div className='fv-plugins-message-container'>
                     <div className='fv-help-block'>{formik.errors.senderid}</div>
@@ -134,15 +144,7 @@ const GroupSMS: React.FC = () => {
               </label>
 
               <div className='col-lg-8 fv-row'>
-                <select
-                  className='form-select form-select-solid form-select-lg '
-                  {...formik.getFieldProps('senderid')}
-                >
-                  <option value=''>Select Group ID</option>
-                  <option value='AF'>test</option>
-                  <option value='AL'>onlive</option>
-
-                </select>
+              <Select options={optionsforGroupID} />
                 {formik.touched.senderid && formik.errors.senderid && (
                   <div className='fv-plugins-message-container'>
                     <div className='fv-help-block'>{formik.errors.senderid}</div>
@@ -230,8 +232,7 @@ const GroupSMS: React.FC = () => {
             <GroupSMSModal/>
 
             <div className='row mb-6'>
-              <label className='col-lg-4 col-form-label  fs-6'>Schedule SMS *</label>
-
+              <label className='col-lg-4 col-form-label fs-6'>Schedule SMS *</label>
               <div className='col-lg-8 fv-row'>
                 <div className='d-flex align-items-center mt-3'>
                   <label className='form-check form-check-inline form-check-solid me-5'>
@@ -251,10 +252,8 @@ const GroupSMS: React.FC = () => {
                         });
                       }}
                     />
-
-                    <span className=' ps-2 fs-6'>Send Now</span>
+                    <span className='ps-2 fs-6'>Send Now</span>
                   </label>
-
                   <label className='form-check form-check-inline form-check-solid'>
                     <input
                       className='form-check-input'
@@ -272,32 +271,26 @@ const GroupSMS: React.FC = () => {
                         });
                       }}
                     />
-                    <span className=' ps-2 fs-6'>Send Later</span>
+                    <span className='ps-2 fs-6'>Send Later</span>
                   </label>
                 </div>
                 <div className='col-lg-8'>
                   {disableDateTime ? (
-                    <select
-                      className='form-select form-select-solid form-select-lg'
-                      {...formik.getFieldProps('timeZone')}
-                      disabled={disableDateTime}
-                    >
-                      <option value=''>{new Date().toLocaleString()}</option>
-                    </select>
+                    <div className='date-time-text'>{selectedDate ? selectedDate.toLocaleString() : ''}</div>
                   ) : (
-                    <DatePicker
-                      selected={selectedDate}
-                      onChange={(date) => setSelectedDate(date)}
-                      showTimeSelect
-                      timeFormat='HH:mm'
-                      timeIntervals={15}
-                      dateFormat='MMMM d, yyyy HH:mm'
-                      minDate={new Date()}
-                      className='form-select form-select-solid form-select-lg'
-                    />
-                    
+                    <div className='send-later-date-picker'>
+                      <DateTimePicker
+                        value={selectedDate}
+                        onChange={setSelectedDate}
+                        className='form-select form-select-solid form-select-lg'
+                        format='MMMM d, yyyy HH:mm'
+                        minDate={new Date()}
+                        disableClock={true}
+                        clearIcon={null}
+                        calendarIcon={null}
+                      />
+                    </div>
                   )}
-                  
                 </div>
               </div>
             </div>
