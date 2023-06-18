@@ -14,7 +14,7 @@ import SenderId from '../modules/SMSBroadCast/SenderId'
 import SMSCampain from '../modules/SMSBroadCast/SMSCampain'
 
 
-import Contact_and_Group from '../modules/Contact&Group/Contact_and_Group'
+
 
 
 import { GroupSMS } from '../modules/SMSBroadCast/GroupSMS'
@@ -22,6 +22,8 @@ import { ContactFileSMS } from '../modules/SMSBroadCast/ContactFileSMS'
 import { SmartSMS } from '../modules/SMSBroadCast/SmartSMS'
 import { SMSTemplete } from '../modules/SMSBroadCast/SMSTemplete'
 import { QuickSMS } from '../modules/SMSBroadCast/QuickSMS'
+import ContactAndGroup from '../modules/ContactAndGroup'
+
 
 
 
@@ -149,21 +151,20 @@ const PrivateRoutes = () => {
         path='crafted/contact&group/*'
         element={
           <SuspensedView>
-            <Contact_and_Group />
+           
           </SuspensedView>
         }>
          
         </Route>
-        {/* <Route
-        path='crafted/contact&group/*'
+        <Route
+        path='crafted/contactAndgroup/*'
         element={
           <SuspensedView>
-            <Fahimn/>
+           <ContactAndGroup/>
           </SuspensedView>
         }>
          
-        </Route> */}
-
+        </Route>
 
 
         <Route

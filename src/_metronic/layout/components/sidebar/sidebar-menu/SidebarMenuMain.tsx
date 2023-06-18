@@ -87,7 +87,7 @@ const SidebarMenuMain = () => {
       
       <SidebarMenuItemWithSub to='/crafted/contact&group' title='Contact&Group' fontIcon='bi-phone' icon='phone'>
         <SidebarMenuItem to='/crafted/contact&group/contact_and_group' title='Contact&Group'  hasBullet={true} />
-        
+        <SidebarMenuItem to='/crafted/contactandgroup' title='Contact & Group' fontIcon='bi-phone' hasBullet={true} />
         
       </SidebarMenuItemWithSub>
 
