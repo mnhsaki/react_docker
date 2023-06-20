@@ -23,6 +23,16 @@ import { SmartSMS } from '../modules/SMSBroadCast/SmartSMS'
 import { SMSTemplete } from '../modules/SMSBroadCast/SMSTemplete'
 import { QuickSMS } from '../modules/SMSBroadCast/QuickSMS'
 import ContactAndGroup from '../modules/ContactAndGroup'
+import SmsFilterText from '../modules/SmsFilterText'
+import CloneUser from '../modules/Users/CloneUser'
+import CreateUser from '../modules/Users/CreateUser'
+import UserList from '../modules/Users/UserList'
+import Price from '../modules/PriceList/Price'
+
+
+
+
+
 
 
 
@@ -166,7 +176,51 @@ const PrivateRoutes = () => {
          
         </Route>
 
+        <Route
+        path='crafted/smsfiltertext/*'
+        element={
+          <SuspensedView>
+           <SmsFilterText/>
+          </SuspensedView>
+        }>
 
+        </Route>
+        <Route
+        path='crafted/users/userlist/*'
+        element={
+          <SuspensedView>
+            <UserList />
+          </SuspensedView>
+        }>
+         
+        </Route>
+        <Route
+        path='crafted/users/cloneuser/*'
+        element={
+          <SuspensedView>
+            <CloneUser />
+          </SuspensedView>
+        }>
+         
+        </Route>
+        <Route
+        path='crafted/users/createuser/*'
+        element={
+          <SuspensedView>
+            <CreateUser />
+          </SuspensedView>
+        }>
+         
+        </Route>
+        <Route
+        path='crafted/pricelist/price/*'
+        element={
+          <SuspensedView>
+            <Price />
+          </SuspensedView>
+        }>
+         
+        </Route>
         <Route
           path='apps/chat/*'
           element={

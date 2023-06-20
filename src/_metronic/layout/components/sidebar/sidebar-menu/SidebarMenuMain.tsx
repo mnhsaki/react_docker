@@ -92,8 +92,18 @@ const SidebarMenuMain = () => {
       </SidebarMenuItemWithSub>
 
       
-
-
+      <SidebarMenuItem to='/crafted/smsfiltertext' title='SMS Filter Text'  hasBullet={true} />
+      
+      
+      <SidebarMenuItemWithSub to='/crafted/users' title='Users' fontIcon='bi-phonebook' icon='phone'>
+      <SidebarMenuItem to='/crafted/users/cloneuser' title='Clone User' hasBullet={true} />
+      <SidebarMenuItem to='/crafted/users/createuser' title='Create User' hasBullet={true} />
+      <SidebarMenuItem to='/crafted/users/userlist' title='User List' hasBullet={true} />
+      </SidebarMenuItemWithSub>
+      
+      <SidebarMenuItemWithSub to='/crafted/pricelist' title='Price List' fontIcon='bi-phonebook' icon='phone'>
+      <SidebarMenuItem to='/crafted/pricelist/price' title='Price' hasBullet={true} />
+      </SidebarMenuItemWithSub>
       {/* <SidebarMenuItemWithSub to='/error' title='Errors' fontIcon='bi-sticky' icon='cross-circle'>
         <SidebarMenuItem to='/error/404' title='Error 404' hasBullet={true} />
         <SidebarMenuItem to='/error/500' title='Error 500' hasBullet={true} />

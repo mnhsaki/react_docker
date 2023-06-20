@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Button, Pagination } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 interface IDataItem {
   name: string;
@@ -17,6 +19,9 @@ const ContactAndGroup = () => {
 
   const [data, setData] = useState<IDataItem[]>(initialData);
   const [sortConfig, setSortConfig] = useState<{ key: keyof IDataItem | null; order: 'asc' | 'desc' | null }>({ key: null, order: null });
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const itemsPerPage = 5;
 
   const handleSort = (key: keyof IDataItem) => {
     let order: 'asc' | 'desc' = 'asc';
@@ -43,75 +48,260 @@ const ContactAndGroup = () => {
     return null;
   };
 
-  return (
-    <div>
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
 
-      <div className="row">
-        <div className="col-8">
-         
-        
-        
-        <div className="card card-custom shadow">
-  <div className="card-header">
-  <table className="table table-hover table-rounded table-striped border gy-7 gs-7">
-          <thead>
-            <tr className="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200">
-              <th onClick={() => handleSort('name')}>
-                Name
-                {getSortSymbol('name')}
-              </th>
-              <th onClick={() => handleSort('position')}>
-                Position
-                {getSortSymbol('position')}
-              </th>
-              <th onClick={() => handleSort('office')}>
-                Office
-                {getSortSymbol('office')}
-              </th>
-              <th onClick={() => handleSort('age')}>
-                Age
-                {getSortSymbol('age')}
-              </th>
-              <th onClick={() => handleSort('startDate')}>
-                Start date
-                {getSortSymbol('startDate')}
-              </th>
-              <th onClick={() => handleSort('salary')}>
-                Salary
-                {getSortSymbol('salary')}
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((item, index) => (
-              <tr key={index}>
-                <td>{item.name}</td>
-                <td>{item.position}</td>
-                <td>{item.office}</td>
-                <td>{item.age}</td>
-                <td>{item.startDate}</td>
-                <td>{item.salary}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-  </div>
- 
-</div>
+  const filteredData = data.filter((item) =>
+    item.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Handle page change
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
+ const optionsforSenderID = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+  ]
+  return (
+    <div className='card mb-5 mb-xl-10'>
+      <div
+        className='card-header border-0 cursor-pointer'
+        role='button'
+        data-bs-toggle=''
+        data-bs-target='#kt_account_profile_details'
+        aria-expanded='true'
+        aria-controls='kt_account_profile_details'
+      >
+        <div className='card-title m-0'>
+          <h3 className='er m-0'>Contact Group <span className='form-text'></span></h3>
         </div>
 
-        <div className="col-4"><div className="card card-custom shadow">
-          <div className="card-header">
-            <h3 className="card-title">Create New Group</h3>
-            <div className="card-toolbar">
-             
+        <div className='card-title m-0'>
+          <Link to='/dashboard'>
+            <Button variant='primary' size='sm'>
+              Dashboard
+            </Button>
+          </Link>
+        </div>
+      </div>
+
+      <div className='card-body'>
+        <div className='row'>
+          <div className='col-8'>
+            <div className='card card-custom shadow'>
+              <div className='card-header'>
+                <span>Search</span>
+                <div className='mb-3'>
+                  <input
+                    type='text'
+                    className='form-control'
+                    placeholder='Search by name'
+                    value={searchTerm}
+                    onChange={handleSearch}
+                  />
+                </div>
+                <table className='table table-hover table-rounded table-striped border gy-7 gs-7'>
+                  <thead>
+                    <tr className='fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200'>
+                      <th onClick={() => handleSort('name')}>
+                        Name
+                        {getSortSymbol('name')}
+                      </th>
+                      <th onClick={() => handleSort('position')}>
+                        Position
+                        {getSortSymbol('position')}
+                      </th>
+                      <th onClick={() => handleSort('office')}>
+                        Office
+                        {getSortSymbol('office')}
+                      </th>
+                      <th onClick={() => handleSort('age')}>
+                        Age
+                        {getSortSymbol('age')}
+                      </th>
+                      <th onClick={() => handleSort('startDate')}>
+                        Start date
+                        {getSortSymbol('startDate')}
+                      </th>
+                      <th onClick={() => handleSort('salary')}>
+                        Salary
+                        {getSortSymbol('salary')}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {currentItems.map((item, index) => (
+                      <tr key={index}>
+                        <td>{item.name}</td>
+                        <td>{item.position}</td>
+                        <td>{item.office}</td>
+                        <td>{item.age}</td>
+                        <td>{item.startDate}</td>
+                        <td>{item.salary}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <Pagination>
+                  <Pagination.Prev
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                  />
+                  {Array.from(Array(totalPages), (e, i) => {
+                    const pageNumber = i + 1;
+                    return (
+                      <Pagination.Item
+                        key={pageNumber}
+                        active={pageNumber === currentPage}
+                        onClick={() => handlePageChange(pageNumber)}
+                      >
+                        {pageNumber}
+                      </Pagination.Item>
+                    );
+                  })}
+                  <Pagination.Next
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                  />
+                </Pagination>
+              </div>
             </div>
           </div>
-          <div className="card-body p-0">
-          <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Example input"></input> <button type="button" className="btn btn-sm btn-light">
-                Submit
-              </button></div>
-        </div></div>
+
+          <div className='col-4'>
+            <div className='card card-custom shadow'>
+              <div className='card-header'>
+                <h3 className='card-title'>Create New Group</h3>
+                <div className='card-toolbar'></div>
+              </div>
+              <div className='card-body p-0'>
+                <input type='text' className='form-control' id='formGroupExampleInput' placeholder='Group Name' />
+                <button type='button' className='btn btn-sm btn-light'>
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className='card mb-5 mb-xl-10'>
+        <div
+          className='card-header border-0 cursor-pointer'
+          role='button'
+          data-bs-toggle=''
+          data-bs-target='#kt_account_profile_details'
+          aria-expanded='true'
+          aria-controls='kt_account_profile_details'
+        >
+          <div className='card-title m-0'>
+            <h3 className='er m-0'>Contact List <span className='form-text'></span></h3>
+          </div>
+
+          <div className='card-title m-0'>
+            <div>
+              <Button variant="primary" size="sm">
+                Create Contact
+              </Button>{' '}
+              <Button variant="info" size="sm">
+                Upload Contact
+              </Button>
+            </div>
+          </div>
+          <div className='card card-custom shadow'>
+            <div className='card-header'>
+              <span>Search</span>
+              <div className='mb-3'>
+                <input
+                  type='text'
+                  className='form-control'
+                  placeholder='Search by name'
+                  value={searchTerm}
+                  onChange={handleSearch}
+                />
+              </div>
+              <table className='table table-hover table-rounded table-striped border gy-7 gs-7'>
+                <thead>
+                  <tr className='fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200'>
+                    <th onClick={() => handleSort('name')}>
+                      Name
+                      {getSortSymbol('name')}
+                    </th>
+                    <th onClick={() => handleSort('position')}>
+                      Position
+                      {getSortSymbol('position')}
+                    </th>
+                    <th onClick={() => handleSort('office')}>
+                      Office
+                      {getSortSymbol('office')}
+                    </th>
+                    <th onClick={() => handleSort('age')}>
+                      Age
+                      {getSortSymbol('age')}
+                    </th>
+                    <th onClick={() => handleSort('startDate')}>
+                      Start date
+                      {getSortSymbol('startDate')}
+                    </th>
+                    <th onClick={() => handleSort('salary')}>
+                      Salary
+                      {getSortSymbol('salary')}
+                    </th>
+                    <th onClick={() => handleSort('salary')}>
+                      Action
+                      {getSortSymbol('salary')}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {currentItems.map((item, index) => (
+                    <tr key={index}>
+                      <td>{item.name}</td>
+                      <td>{item.position}</td>
+                      <td>{item.office}</td>
+                      <td>{item.age}</td>
+                      <td>{item.startDate}</td>
+                      <td>{item.salary}</td>
+                      <td><Button variant="primary" size="sm">
+                        Action 
+                      </Button>{' '}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <Pagination>
+                <Pagination.Prev
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                />
+                {Array.from(Array(totalPages), (e, i) => {
+                  const pageNumber = i + 1;
+                  return (
+                    <Pagination.Item
+                      key={pageNumber}
+                      active={pageNumber === currentPage}
+                      onClick={() => handlePageChange(pageNumber)}
+                    >
+                      {pageNumber}
+                    </Pagination.Item>
+                  );
+                })}
+                <Pagination.Next
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                />
+              </Pagination>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
