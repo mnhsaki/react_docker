@@ -45,7 +45,7 @@ const CreateUser = () => {
   ];
 
   const [selected, setSelected] = useState<string[]>([]);
- 
+
   return (
     <div>
       <div className='card mb-5 mb-xl-10'>
@@ -73,6 +73,7 @@ const CreateUser = () => {
                   className='form-control'
                   value={userType}
                   onChange={handleUserTypeChange}
+                  style={{ backgroundColor: 'transparent' }} // Remove background color
                 >
                   <option value=''>Select user type</option>
                   <option value='admin'>Admin</option>
@@ -152,10 +153,9 @@ const CreateUser = () => {
                     }}
                     showOrderButtons={false}
                     showHeaderLabels={false}
-                    
-                    simpleValue
-                    preserveSelectOrder
+                    // style={{ backgroundColor: 'white' }} // Set background color to white
                   />
+
                 </div>
               </div>
               <div className='mb-3'>
@@ -164,6 +164,7 @@ const CreateUser = () => {
                   className='form-control'
                   value={userType}
                   onChange={handleUserTypeChange}
+                  style={{ backgroundColor: 'transparent' }} // Remove background color
                 >
                   <option value=''>Select margin type</option>
                   <option value='admin'>Admin</option>

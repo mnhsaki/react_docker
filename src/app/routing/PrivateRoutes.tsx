@@ -28,6 +28,7 @@ import CloneUser from '../modules/Users/CloneUser'
 import CreateUser from '../modules/Users/CreateUser'
 import UserList from '../modules/Users/UserList'
 import Price from '../modules/PriceList/Price'
+import TodayBroadCast from '../modules/LiveReports/TodayBroadCast'
 
 
 
@@ -221,6 +222,17 @@ const PrivateRoutes = () => {
         }>
          
         </Route>
+
+        <Route
+        path='crafted/livereports/todaybroadcast/*'
+        element={
+          <SuspensedView>
+            <TodayBroadCast />
+          </SuspensedView>
+        }>
+         
+        </Route>
+
         <Route
           path='apps/chat/*'
           element={

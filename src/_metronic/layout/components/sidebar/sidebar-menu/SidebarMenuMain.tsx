@@ -104,6 +104,12 @@ const SidebarMenuMain = () => {
       <SidebarMenuItemWithSub to='/crafted/pricelist' title='Price List' fontIcon='bi-phonebook' icon='phone'>
       <SidebarMenuItem to='/crafted/pricelist/price' title='Price' hasBullet={true} />
       </SidebarMenuItemWithSub>
+      
+      <SidebarMenuItemWithSub to='/crafted/livereports' title='Live Reports' fontIcon='bi-phonebook' icon='phone'>
+      <SidebarMenuItem to='/crafted/livereports/todaybroadcast' title='TodayBroadCast' hasBullet={true} />
+      </SidebarMenuItemWithSub>
+      
+
       {/* <SidebarMenuItemWithSub to='/error' title='Errors' fontIcon='bi-sticky' icon='cross-circle'>
         <SidebarMenuItem to='/error/404' title='Error 404' hasBullet={true} />
         <SidebarMenuItem to='/error/500' title='Error 500' hasBullet={true} />
