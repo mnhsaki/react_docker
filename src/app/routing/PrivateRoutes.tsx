@@ -33,6 +33,13 @@ import TodaySMS from '../modules/LiveReports/TodaySMS'
 import SMSTodayAPI from '../modules/LiveReports/SMSTodayAPI'
 import SMSTodayAPIReportDownload from '../modules/LiveReports/SMSTodayAPIReportDownload'
 import SummeryLogs from '../modules/LiveReports/SummeryLogs'
+import MNOBalanceNotifyList from '../modules/Monitoring/MNOBalanceNotifyList'
+import BalanceNotificationLog from '../modules/Monitoring/BalanceNotificationLog'
+import BalanceThreshold from '../modules/Monitoring/BalanceThreshold'
+import LogoUpload from '../modules/Settings/LogoUpdates'
+import BroadCastHistory from '../modules/Archive/BroadCastHistory'
+import SMSHistory from '../modules/Archive/SMSHistory'
+import SMSHistoryAPI from '../modules/Archive/SMSHistoryAPI'
 
 
 
@@ -268,6 +275,73 @@ const PrivateRoutes = () => {
         element={
           <SuspensedView>
             <SummeryLogs />
+          </SuspensedView>
+        }>
+         
+        </Route>
+        <Route
+        path='crafted/Monitoring/mnobalancenotifylist/*'
+        element={
+          <SuspensedView>
+            <MNOBalanceNotifyList />
+          </SuspensedView>
+        }>
+         
+        </Route>
+        <Route
+        path='crafted/Monitoring/balancethreshold/*'
+        element={
+          <SuspensedView>
+            <BalanceThreshold />
+          </SuspensedView>
+        }>
+         
+        </Route>
+        <Route
+        path='crafted/Monitoring/balancenotificationlog/*'
+        element={
+          <SuspensedView>
+            <BalanceNotificationLog />
+          </SuspensedView>
+        }>
+         
+        </Route>
+
+        <Route
+        path='crafted/Settings/logoupdates/*'
+        element={
+          <SuspensedView>
+            <LogoUpload />
+          </SuspensedView>
+        }>
+         
+        </Route>
+
+        <Route
+        path='crafted/Archive/broadcasthistory/*'
+        element={
+          <SuspensedView>
+            <BroadCastHistory />
+          </SuspensedView>
+        }>
+         
+        </Route>
+
+        <Route
+        path='crafted/Archive/smshistory/*'
+        element={
+          <SuspensedView>
+            <SMSHistory />
+          </SuspensedView>
+        }>
+         
+        </Route>
+
+        <Route
+        path='crafted/Archive/smshistoryapi/*'
+        element={
+          <SuspensedView>
+            <SMSHistoryAPI />
           </SuspensedView>
         }>
          

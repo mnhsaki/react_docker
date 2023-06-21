@@ -112,7 +112,25 @@ const SidebarMenuMain = () => {
       <SidebarMenuItem to='/crafted/livereports/smstodayapireportdownload' title='SMS TodayAPI ReportDownload ' hasBullet={true} />
       <SidebarMenuItem to='/crafted/livereports/summerylogs' title='Summery Logs ' hasBullet={true} />
       </SidebarMenuItemWithSub>
+
+      <SidebarMenuItemWithSub to='/crafted/monitoring' title='Monitoring' fontIcon='bi-phonebook' icon='phone'>
+      <SidebarMenuItem to='/crafted/monitoring/mnobalancenotifyList' title='MNOBalanceNotifyList' hasBullet={true} />
+     
+      <SidebarMenuItem to='/crafted/monitoring/balancenotificationlog' title='BalanceNotificationLog' hasBullet={true} />
+      <SidebarMenuItem to='/crafted/monitoring/balancethreshold' title='Balance Threshold' hasBullet={true} />
+      </SidebarMenuItemWithSub>
+
+      <SidebarMenuItemWithSub to='/crafted/settings' title='Settings' fontIcon='bi-phonebook' icon='phone'>
+      <SidebarMenuItem to='/crafted/settings/logoupdates' title='Logo Updates' hasBullet={true} />
+      </SidebarMenuItemWithSub>
+
+      <SidebarMenuItemWithSub to='/crafted/archive' title='Archive' fontIcon='bi-phonebook' icon='phone'>
+      <SidebarMenuItem to='/crafted/archive/broadcasthistory' title='BroadCast History' hasBullet={true} />
+      <SidebarMenuItem to='/crafted/archive/smshistory' title='SMS History' hasBullet={true} />
+      <SidebarMenuItem to='/crafted/archive/smshistoryapi' title='SMS History-API' hasBullet={true} />
       
+      <SidebarMenuItem to='/crafted/livereports/summerylogs' title='Summery Logs ' hasBullet={true} />
+      </SidebarMenuItemWithSub>
 
       {/* <SidebarMenuItemWithSub to='/error' title='Errors' fontIcon='bi-sticky' icon='cross-circle'>
         <SidebarMenuItem to='/error/404' title='Error 404' hasBullet={true} />
