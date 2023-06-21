@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
+import DualListBox from 'react-dual-listbox';
+import 'react-dual-listbox/lib/react-dual-listbox.css';
+import { Link } from 'react-router-dom';
 
 const CreateUser = () => {
   const [nidFile, setNidFile] = useState(null);
@@ -37,6 +39,13 @@ const CreateUser = () => {
     </li>
   ));
 
+  const options = [
+    { value: 'one', label: 'Option One' },
+    { value: 'two', label: 'Option Two' },
+  ];
+
+  const [selected, setSelected] = useState<string[]>([]);
+ 
   return (
     <div>
       <div className='card mb-5 mb-xl-10'>
@@ -65,7 +74,7 @@ const CreateUser = () => {
                   value={userType}
                   onChange={handleUserTypeChange}
                 >
-                  <option value=''>Select margin type</option>
+                  <option value=''>Select user type</option>
                   <option value='admin'>Admin</option>
                   <option value='manager'>Manager</option>
                   <option value='employee'>Employee</option>
@@ -77,6 +86,7 @@ const CreateUser = () => {
                   type='text'
                   className='form-control'
                   placeholder='Enter name'
+                  onChange={() => {}}
                 />
               </div>
               <div className='mb-3'>
@@ -85,6 +95,7 @@ const CreateUser = () => {
                   type='text'
                   className='form-control'
                   placeholder='Enter email'
+                  onChange={() => {}}
                 />
               </div>
               <div className='mb-3'>
@@ -93,6 +104,7 @@ const CreateUser = () => {
                   type='text'
                   className='form-control'
                   placeholder='Enter contact number'
+                  onChange={() => {}}
                 />
               </div>
               <div className='row mb-6'>
@@ -125,52 +137,35 @@ const CreateUser = () => {
           <div className='col-6'>
             <div className='card-body'>
               <div className='row mb-6'>
-              <span className='er m-0'>Select Sender ID</span>
-              <div className="d-flex p-2 bg-secondary text-white">
-  
-  <div className="p-2 bg-warning"><div className='card' style={{ width: '14rem' }}>
-                  <div className='card-header'>
-                  <input
-                  type='text'
-                  className='form-control'
-                  placeholder='Search...'
-                />
-                  </div>
-                  <ul className='list-group list-group-flush'>
-                    <li className='list-group-item'>Cras justo odio</li>
-                    <li className='list-group-item'>Dapibus ac facilisis in</li>
-                    <li className='list-group-item'>Vestibulum at eros</li>
-                  </ul>
-                </div></div>
-  <div className="p-2 bg-primary"><div className='card' style={{ width: '14rem' }}>
-                  <div className='card-header'>
-                  <input
-                  type='text'
-                  className='form-control'
-                  placeholder='Search...'
-                />
-                  </div>
-                  <ul className='list-group list-group-flush'>
-                    <li className='list-group-item'>Cras justo odio</li>
-                    <li className='list-group-item'>Dapibus ac facilisis in</li>
-                    <li className='list-group-item'>Vestibulum at eros</li>
-                  </ul>
-                </div></div>
-</div>
-
-
-
-                
-                
+                <span className='er m-0'>Select Sender ID</span>
+                <div className="d-flex p-2 bg-secondary text-white">
+                  <DualListBox
+                    options={options}
+                    selected={selected}
+                    onChange={(value: string[]) => setSelected(value)}
+                    canFilter
+                    icons={{
+                      moveLeft: <>&lt;</>,
+                      moveAllLeft: <>&#8810;</>,
+                      moveRight: <>&gt;</>,
+                      moveAllRight: <>&#8811;</>,
+                    }}
+                    showOrderButtons={false}
+                    showHeaderLabels={false}
+                    
+                    simpleValue
+                    preserveSelectOrder
+                  />
+                </div>
               </div>
               <div className='mb-3'>
-                <label className='form-label'>Margine Type</label>
+                <label className='form-label'>Margin Type</label>
                 <select
                   className='form-control'
                   value={userType}
                   onChange={handleUserTypeChange}
                 >
-                  <option value=''>Select user type</option>
+                  <option value=''>Select margin type</option>
                   <option value='admin'>Admin</option>
                   <option value='manager'>Manager</option>
                   <option value='employee'>Employee</option>
@@ -182,10 +177,9 @@ const CreateUser = () => {
                   type='text'
                   className='form-control'
                   placeholder='Profit Per'
+                  onChange={() => {}}
                 />
               </div>
-              
-              
             </div>
           </div>
         </div>
