@@ -3,9 +3,9 @@ import { MDBDataTable } from 'mdbreact';
 import { Button, Pagination } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const TodayBroadCast = () => {
+const SummaryLogs = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const itemsPerPage = 10;
 
   const data = {
     columns: [
@@ -16,66 +16,62 @@ const TodayBroadCast = () => {
         width: 50
       },
       {
-        label: '#',
-        field: 'id',
+        label: 'Task',
+        field: 'task',
         sort: 'asc',
-        width: 50
-      },
-      {
-        label: 'Date',
-        field: 'date',
-        sort: 'asc',
-        width: 100
-      },
-      {
-        label: 'User',
-        field: 'user',
-        sort: 'asc',
-        width: 100
-      },
-      {
-        label: 'SMS Part',
-        field: 'smsPart',
-        sort: 'asc',
-        width: 100
-      },
-      {
-        label: 'SMS Type',
-        field: 'smsType',
-        sort: 'asc',
-        width: 100
+        width: 200
       },
       {
         label: 'Sender',
         field: 'sender',
         sort: 'asc',
-        width: 100
+        width: 200
       },
       {
-        label: 'Count',
-        field: 'count',
-        sort: 'asc',
-        width: 75
-      },
-      {
-        label: 'SMS Text',
-        field: 'smsText',
+        label: 'Name',
+        field: 'name',
         sort: 'asc',
         width: 200
       },
+      {
+        label: 'Send Status',
+        field: 'sendStatus',
+        sort: 'asc',
+        width: 200
+      },
+      {
+        label: 'Sms Count',
+        field: 'smsCount',
+        sort: 'asc',
+        width: 100
+      },
+      {
+        label: 'Sms Hit',
+        field: 'smsHit',
+        sort: 'asc',
+        width: 100
+      }
     ],
     rows: [
       // Add your data rows here
       // Example:
       {
         id: '1',
-        date: '2023-06-21',
-        user: 'John Doe',
-        smsPart: 'Part A',
-        smsType: 'Type X',
-        sender: 'Company',
-        count: '10',
-        smsText: 'This is the message text.'
+        task: 'Task 1',
+        sender: 'Sender 1',
+        name: 'Name 1',
+        sendStatus: 'Status 1',
+        smsCount: 'Count 1',
+        smsHit: 'Hit 1'
+      },
+      {
+        id: '2',
+        task: 'Task 2',
+        sender: 'Sender 2',
+        name: 'Name 2',
+        sendStatus: 'Status 2',
+        smsCount: 'Count 2',
+        smsHit: 'Hit 2'
       },
       // ...
     ]
@@ -102,6 +98,7 @@ const TodayBroadCast = () => {
           </div>
         </div>
         <div className="card-body">
+          
           <MDBDataTable
             striped
             bordered
@@ -127,4 +124,4 @@ const TodayBroadCast = () => {
   );
 };
 
-export default TodayBroadCast;
+export default SummaryLogs;

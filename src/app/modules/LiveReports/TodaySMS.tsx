@@ -3,21 +3,15 @@ import { MDBDataTable } from 'mdbreact';
 import { Button, Pagination } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const TodayBroadCast = () => {
+const TodaySMS = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
   const data = {
     columns: [
       {
-        label: '#',
-        field: 'id',
-        sort: 'asc',
-        width: 50
-      },
-      {
-        label: '#',
-        field: 'id',
+        label: 'SMS ID',
+        field: 'smsId',
         sort: 'asc',
         width: 50
       },
@@ -28,20 +22,8 @@ const TodayBroadCast = () => {
         width: 100
       },
       {
-        label: 'User',
-        field: 'user',
-        sort: 'asc',
-        width: 100
-      },
-      {
-        label: 'SMS Part',
-        field: 'smsPart',
-        sort: 'asc',
-        width: 100
-      },
-      {
-        label: 'SMS Type',
-        field: 'smsType',
+        label: 'MSISDN',
+        field: 'msisdn',
         sort: 'asc',
         width: 100
       },
@@ -52,10 +34,28 @@ const TodayBroadCast = () => {
         width: 100
       },
       {
-        label: 'Count',
-        field: 'count',
+        label: 'SMS Part',
+        field: 'smsPart',
         sort: 'asc',
-        width: 75
+        width: 100
+      },
+      {
+        label: 'Status',
+        field: 'status',
+        sort: 'asc',
+        width: 100
+      },
+      {
+        label: 'SMS Cost',
+        field: 'smsCost',
+        sort: 'asc',
+        width: 100
+      },
+      {
+        label: 'User Name',
+        field: 'userName',
+        sort: 'asc',
+        width: 100
       },
       {
         label: 'SMS Text',
@@ -63,19 +63,27 @@ const TodayBroadCast = () => {
         sort: 'asc',
         width: 200
       },
+      {
+        label: 'Broadcast ID',
+        field: 'broadcastId',
+        sort: 'asc',
+        width: 100
+      },
     ],
     rows: [
       // Add your data rows here
       // Example:
       {
-        id: '1',
+        smsId: '1',
         date: '2023-06-21',
-        user: 'John Doe',
-        smsPart: 'Part A',
-        smsType: 'Type X',
+        msisdn: '123456789',
         sender: 'Company',
-        count: '10',
-        smsText: 'This is the message text.'
+        smsPart: 'Part A',
+        status: 'Active',
+        smsCost: '$0.05',
+        userName: 'John Doe',
+        smsText: 'This is the message text.',
+        broadcastId: '123'
       },
       // ...
     ]
@@ -91,7 +99,7 @@ const TodayBroadCast = () => {
       <div className="card mb-5 mb-xl-10">
         <div className="card-header border-0 d-flex justify-content-between">
           <div className="card-title">
-            <h3 className="er mb-0">Price</h3>
+            <h3 className="er mb-0">SMS Today</h3>
           </div>
           <div className="card-title">
             <Link to="/dashboard">
@@ -127,4 +135,4 @@ const TodayBroadCast = () => {
   );
 };
 
-export default TodayBroadCast;
+export default TodaySMS;

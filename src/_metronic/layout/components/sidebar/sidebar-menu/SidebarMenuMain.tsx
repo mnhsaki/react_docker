@@ -107,6 +107,10 @@ const SidebarMenuMain = () => {
       
       <SidebarMenuItemWithSub to='/crafted/livereports' title='Live Reports' fontIcon='bi-phonebook' icon='phone'>
       <SidebarMenuItem to='/crafted/livereports/todaybroadcast' title='TodayBroadCast' hasBullet={true} />
+      <SidebarMenuItem to='/crafted/livereports/todaysms' title='Today SMS' hasBullet={true} />
+      <SidebarMenuItem to='/crafted/livereports/smstodayapi' title='SMS Today-API ' hasBullet={true} />
+      <SidebarMenuItem to='/crafted/livereports/smstodayapireportdownload' title='SMS TodayAPI ReportDownload ' hasBullet={true} />
+      <SidebarMenuItem to='/crafted/livereports/summerylogs' title='Summery Logs ' hasBullet={true} />
       </SidebarMenuItemWithSub>
       
 

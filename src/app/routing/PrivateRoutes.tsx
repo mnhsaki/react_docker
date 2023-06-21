@@ -29,6 +29,10 @@ import CreateUser from '../modules/Users/CreateUser'
 import UserList from '../modules/Users/UserList'
 import Price from '../modules/PriceList/Price'
 import TodayBroadCast from '../modules/LiveReports/TodayBroadCast'
+import TodaySMS from '../modules/LiveReports/TodaySMS'
+import SMSTodayAPI from '../modules/LiveReports/SMSTodayAPI'
+import SMSTodayAPIReportDownload from '../modules/LiveReports/SMSTodayAPIReportDownload'
+import SummeryLogs from '../modules/LiveReports/SummeryLogs'
 
 
 
@@ -228,6 +232,42 @@ const PrivateRoutes = () => {
         element={
           <SuspensedView>
             <TodayBroadCast />
+          </SuspensedView>
+        }>
+         
+        </Route>
+        <Route
+        path='crafted/livereports/todaysms/*'
+        element={
+          <SuspensedView>
+            <TodaySMS />
+          </SuspensedView>
+        }>
+         
+        </Route>
+        <Route
+        path='crafted/livereports/smstodayapi/*'
+        element={
+          <SuspensedView>
+            <SMSTodayAPI />
+          </SuspensedView>
+        }>
+         
+        </Route>
+        <Route
+        path='crafted/livereports/smstodayapireportdownload/*'
+        element={
+          <SuspensedView>
+            <SMSTodayAPIReportDownload />
+          </SuspensedView>
+        }>
+         
+        </Route>
+        <Route
+        path='crafted/livereports/summerylogs/*'
+        element={
+          <SuspensedView>
+            <SummeryLogs />
           </SuspensedView>
         }>
          
