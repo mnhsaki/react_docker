@@ -3,19 +3,37 @@ import { MDBDataTable } from 'mdbreact';
 import { Button, Pagination, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const ArchiveDeliveryLogReport = () => {
+const Pending = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [startDate, setStartDate] = useState('2023-06-19');
-  const [endDate, setEndDate] = useState('2023-06-21');
-  const itemsPerPage = 5;
+  const [startDate, setStartDate] = useState('2023-06-22');
+  const [endDate, setEndDate] = useState('2023-06-22');
+  const itemsPerPage = 10;
 
   const data = {
     columns: [
       {
-        label: '#SL',
-        field: 'sl',
+        label: '#',
+        field: 'id',
         sort: 'asc',
         width: 50
+      },
+      {
+        label: 'Insert Date',
+        field: 'insertDate',
+        sort: 'asc',
+        width: 100
+      },
+      {
+        label: 'Schedule Date',
+        field: 'scheduleDate',
+        sort: 'asc',
+        width: 100
+      },
+      {
+        label: 'Status',
+        field: 'status',
+        sort: 'asc',
+        width: 100
       },
       {
         label: 'Sender',
@@ -24,35 +42,50 @@ const ArchiveDeliveryLogReport = () => {
         width: 100
       },
       {
-        label: 'Panel Or API',
-        field: 'panelOrApi',
+        label: 'Type',
+        field: 'type',
         sort: 'asc',
         width: 100
       },
       {
-        label: 'Send Date',
-        field: 'sendDate',
+        label: 'Part',
+        field: 'part',
         sort: 'asc',
-        width: 100
+        width: 75
       },
       {
-        label: 'DLR',
-        field: 'dlr',
+        label: 'Count',
+        field: 'count',
+        sort: 'asc',
+        width: 75
+      },
+      {
+        label: 'SMS Text',
+        field: 'smsText',
+        sort: 'asc',
+        width: 200
+      },
+      {
+        label: 'Action',
+        field: 'action',
         sort: 'asc',
         width: 100
       },
     ],
     rows: [
       // Add your data rows here
-      // Example:
       {
-        sl: '1',
-        sender: '8801xxxxxxxxxx',
-        panelOrApi: 'Panel',
-        sendDate: '2023-06-21',
-        dlr: 'Delivered'
+        id: '1',
+        insertDate: 'No data available in table',
+        scheduleDate: 'Showing 0 to 0 of 0 entries',
+        status: '',
+        sender: '',
+        type: '',
+        part: '',
+        count: '',
+        smsText: '',
+        action: ''
       },
-      // ...
     ]
   };
 
@@ -76,6 +109,7 @@ const ArchiveDeliveryLogReport = () => {
     console.log('Search clicked!');
     console.log('Start Date:', startDate);
     console.log('End Date:', endDate);
+    // Implement your search logic here
   };
 
   return (
@@ -83,7 +117,7 @@ const ArchiveDeliveryLogReport = () => {
       <div className="card mb-5 mb-xl-10">
         <div className="card-header border-0 d-flex justify-content-between">
           <div className="card-title">
-            <h3 className="er mb-0">Archive Delivery Log Report</h3>
+            <h3 className="er mb-0">SMS Schedule Pending</h3>
           </div>
           <div className="card-title">
             <Link to="/dashboard">
@@ -95,27 +129,29 @@ const ArchiveDeliveryLogReport = () => {
         </div>
         <div className="card-body">
           <div className="d-flex justify-content-between align-items-center">
-            <Form.Group controlId="startDate">
+            <div className="d-flex flex-column">
               <Form.Label>From</Form.Label>
               <Form.Control
                 type="date"
                 name="startDate"
                 value={startDate}
                 onChange={handleDateChange}
+                style={{ backgroundColor: '#f5f5f5' }} // Set the background color here
               />
-            </Form.Group>
-            <Form.Group controlId="endDate" className="d-flex align-items-center">
+            </div>
+            <div className="d-flex flex-column">
               <Form.Label>To</Form.Label>
               <Form.Control
                 type="date"
                 name="endDate"
                 value={endDate}
                 onChange={handleDateChange}
+                style={{ backgroundColor: '#f5f5f5' }} // Set the background color here
               />
-              <Button variant="primary" size="sm" onClick={handleSearch}>
-                Search
-              </Button>
-            </Form.Group>
+            </div>
+            <Button variant="primary" size="sm" onClick={handleSearch}>
+              Search
+            </Button>
           </div>
           <MDBDataTable
             striped
@@ -142,4 +178,4 @@ const ArchiveDeliveryLogReport = () => {
   );
 };
 
-export default ArchiveDeliveryLogReport;
+export default Pending;

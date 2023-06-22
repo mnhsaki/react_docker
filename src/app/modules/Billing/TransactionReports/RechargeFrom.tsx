@@ -3,19 +3,43 @@ import { MDBDataTable } from 'mdbreact';
 import { Button, Pagination, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const ArchiveDeliveryLogReport = () => {
+const RechargeFrom = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [startDate, setStartDate] = useState('2023-06-19');
-  const [endDate, setEndDate] = useState('2023-06-21');
-  const itemsPerPage = 5;
+  const [startDate, setStartDate] = useState('2023-06-22');
+  const [endDate, setEndDate] = useState('2023-06-22');
+  const itemsPerPage = 10;
 
   const data = {
     columns: [
       {
-        label: '#SL',
-        field: 'sl',
+        label: '#',
+        field: 'id',
         sort: 'asc',
         width: 50
+      },
+      {
+        label: 'Date',
+        field: 'date',
+        sort: 'asc',
+        width: 100
+      },
+      {
+        label: 'User',
+        field: 'user',
+        sort: 'asc',
+        width: 100
+      },
+      {
+        label: 'SMS Part',
+        field: 'smsPart',
+        sort: 'asc',
+        width: 100
+      },
+      {
+        label: 'SMS Type',
+        field: 'smsType',
+        sort: 'asc',
+        width: 100
       },
       {
         label: 'Sender',
@@ -24,35 +48,30 @@ const ArchiveDeliveryLogReport = () => {
         width: 100
       },
       {
-        label: 'Panel Or API',
-        field: 'panelOrApi',
+        label: 'Count',
+        field: 'count',
         sort: 'asc',
-        width: 100
+        width: 75
       },
       {
-        label: 'Send Date',
-        field: 'sendDate',
+        label: 'SMS Text',
+        field: 'smsText',
         sort: 'asc',
-        width: 100
-      },
-      {
-        label: 'DLR',
-        field: 'dlr',
-        sort: 'asc',
-        width: 100
+        width: 200
       },
     ],
     rows: [
       // Add your data rows here
-      // Example:
       {
-        sl: '1',
-        sender: '8801xxxxxxxxxx',
-        panelOrApi: 'Panel',
-        sendDate: '2023-06-21',
-        dlr: 'Delivered'
+        id: '1',
+        date: 'No data available in table',
+        user: 'Showing 0 to 0 of 0 entries',
+        smsPart: '',
+        smsType: '',
+        sender: '',
+        count: '',
+        smsText: ''
       },
-      // ...
     ]
   };
 
@@ -83,7 +102,7 @@ const ArchiveDeliveryLogReport = () => {
       <div className="card mb-5 mb-xl-10">
         <div className="card-header border-0 d-flex justify-content-between">
           <div className="card-title">
-            <h3 className="er mb-0">Archive Delivery Log Report</h3>
+            <h3 className="er mb-0">Transaction History: Recharge From</h3>
           </div>
           <div className="card-title">
             <Link to="/dashboard">
@@ -142,4 +161,4 @@ const ArchiveDeliveryLogReport = () => {
   );
 };
 
-export default ArchiveDeliveryLogReport;
+export default RechargeFrom;

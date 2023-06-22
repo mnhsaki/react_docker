@@ -128,8 +128,27 @@ const SidebarMenuMain = () => {
       <SidebarMenuItem to='/crafted/archive/broadcasthistory' title='BroadCast History' hasBullet={true} />
       <SidebarMenuItem to='/crafted/archive/smshistory' title='SMS History' hasBullet={true} />
       <SidebarMenuItem to='/crafted/archive/smshistoryapi' title='SMS History-API' hasBullet={true} />
-      
       <SidebarMenuItem to='/crafted/livereports/summerylogs' title='Summery Logs ' hasBullet={true} />
+      <SidebarMenuItem to='/crafted/archive/archivedeliverylogreport' title='Archive Delivery LogReport ' hasBullet={true} />
+      <SidebarMenuItem to='/crafted/archive/apireportdownload' title='API Report Download ' hasBullet={true} />
+      <SidebarMenuItem to='/crafted/archive/panelreportdownload' title='Panel Report Download ' hasBullet={true} />
+      </SidebarMenuItemWithSub>
+
+      <SidebarMenuItemWithSub to='/crafted/billing/transactionreports' title='Billing' fontIcon='bi-phonebook' icon='phone'>
+      <SidebarMenuItem to='/crafted/billing/transactionreports/rechargefrom' title='Recharge Form' hasBullet={true} />
+      <SidebarMenuItem to='/crafted/billing/transactionreports/rechargeto' title='Recharge To' hasBullet={true} />
+      <SidebarMenuItem to='/crafted/billing/invoice/invoicecreate' title='Invoice Create' hasBullet={true} />
+      <SidebarMenuItem to='/crafted/billing/invoice/invoicelist' title='Invoice List' hasBullet={true} />
+      </SidebarMenuItemWithSub>
+
+      <SidebarMenuItemWithSub to='/crafted/schedules' title='Schedules' fontIcon='bi-phonebook' icon='phone'>
+      <SidebarMenuItem to='/crafted/schedules/pending' title='Pending' hasBullet={true} />
+      <SidebarMenuItem to='/crafted/schedules/send' title='Send' hasBullet={true} />
+      </SidebarMenuItemWithSub>
+
+      <SidebarMenuItemWithSub to='/crafted/developeroptions' title='Developer Options' fontIcon='bi-phonebook' icon='phone'>
+      <SidebarMenuItem to='/crafted/developeroptions/changepassword' title='Change Password' hasBullet={true} />
+     
       </SidebarMenuItemWithSub>
 
       {/* <SidebarMenuItemWithSub to='/error' title='Errors' fontIcon='bi-sticky' icon='cross-circle'>

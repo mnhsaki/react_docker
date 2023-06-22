@@ -12,11 +12,6 @@ import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
 
 import SenderId from '../modules/SMSBroadCast/SenderId'
 import SMSCampain from '../modules/SMSBroadCast/SMSCampain'
-
-
-
-
-
 import { GroupSMS } from '../modules/SMSBroadCast/GroupSMS'
 import { ContactFileSMS } from '../modules/SMSBroadCast/ContactFileSMS'
 import { SmartSMS } from '../modules/SMSBroadCast/SmartSMS'
@@ -40,16 +35,16 @@ import LogoUpload from '../modules/Settings/LogoUpdates'
 import BroadCastHistory from '../modules/Archive/BroadCastHistory'
 import SMSHistory from '../modules/Archive/SMSHistory'
 import SMSHistoryAPI from '../modules/Archive/SMSHistoryAPI'
-
-
-
-
-
-
-
-
-
-
+import ArchiveDeliveryLogReport from '../modules/Archive/ArchiveDeliveryLogReport'
+import APIReportDownload from '../modules/Archive/APIReportDownload'
+import PanelReportDownload from '../modules/Archive/PanelReportDownload'
+import RechargeFrom from '../modules/Billing/TransactionReports/RechargeFrom'
+import RechargeTo from '../modules/Billing/TransactionReports/RechargeTo'
+import InvoiceCreate from '../modules/Billing/Invoice/InvoiceCreate'
+import InvoiceList from '../modules/Billing/Invoice/InvoiceList'
+import Send from '../modules/Schedules/Send'
+import Pending from '../modules/Schedules/Pending'
+import ChangePassword from '../modules/DeveloperOptions/ChangePassword'
 
 
 
@@ -346,6 +341,105 @@ const PrivateRoutes = () => {
         }>
          
         </Route>
+        <Route
+        path='crafted/Archive/archivedeliverylogreport/*'
+        element={
+          <SuspensedView>
+            <ArchiveDeliveryLogReport />
+          </SuspensedView>
+        }>
+         
+        </Route>
+        <Route
+        path='crafted/Archive/apireportdownload/*'
+        element={
+          <SuspensedView>
+            <APIReportDownload />
+          </SuspensedView>
+        }>
+         
+        </Route>
+        <Route
+        path='crafted/Archive/panelreportdownload/*'
+        element={
+          <SuspensedView>
+            <PanelReportDownload/>
+          </SuspensedView>
+        }>
+         
+        </Route>
+        <Route
+        path='crafted/Billing/TransactionReports/rechargefrom/*'
+        element={
+          <SuspensedView>
+            <RechargeFrom/>
+          </SuspensedView>
+        }>
+         
+        </Route>
+        <Route
+        path='crafted/Billing/TransactionReports/rechargeto/*'
+        element={
+          <SuspensedView>
+            <RechargeTo/>
+          </SuspensedView>
+        }>
+         
+        </Route>
+        <Route
+        path='crafted/Billing/Invoice/invoicecreate/*'
+        element={
+          <SuspensedView>
+            <InvoiceCreate/>
+          </SuspensedView>
+        }>
+         
+        </Route>
+        <Route
+        path='crafted/Billing/Invoice/invoicelist/*'
+        element={
+          <SuspensedView>
+            <InvoiceList/>
+          </SuspensedView>
+        }>
+         
+        </Route>
+
+        
+        <Route
+        path='crafted/Schedules/send/*'
+        element={
+          <SuspensedView>
+            <Send/>
+          </SuspensedView>
+        }>
+         
+        </Route>
+        
+        <Route
+        path='crafted/Schedules/pending/*'
+        element={
+          <SuspensedView>
+            <Pending/>
+          </SuspensedView>
+        }>
+         
+        </Route>
+
+        <Route
+        path='crafted/DeveloperOptions/changepassword/*'
+        element={
+          <SuspensedView>
+            <ChangePassword/>
+          </SuspensedView>
+        }>
+         
+        </Route>
+        
+
+        
+
+
 
         <Route
           path='apps/chat/*'

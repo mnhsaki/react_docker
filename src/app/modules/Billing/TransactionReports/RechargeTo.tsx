@@ -3,41 +3,59 @@ import { MDBDataTable } from 'mdbreact';
 import { Button, Pagination, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const ArchiveDeliveryLogReport = () => {
+const RechargeTo = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [startDate, setStartDate] = useState('2023-06-19');
-  const [endDate, setEndDate] = useState('2023-06-21');
-  const itemsPerPage = 5;
+  const [startDate, setStartDate] = useState('2023-06-22');
+  const [endDate, setEndDate] = useState('2023-06-22');
+  const itemsPerPage = 10;
 
   const data = {
     columns: [
       {
-        label: '#SL',
-        field: 'sl',
+        label: '#',
+        field: 'id',
         sort: 'asc',
         width: 50
       },
       {
-        label: 'Sender',
-        field: 'sender',
+        label: 'User ID',
+        field: 'userId',
         sort: 'asc',
         width: 100
       },
       {
-        label: 'Panel Or API',
-        field: 'panelOrApi',
+        label: 'Name',
+        field: 'name',
         sort: 'asc',
         width: 100
       },
       {
-        label: 'Send Date',
-        field: 'sendDate',
+        label: 'Recharge Date',
+        field: 'rechargeDate',
         sort: 'asc',
         width: 100
       },
       {
-        label: 'DLR',
-        field: 'dlr',
+        label: 'Balance',
+        field: 'balance',
+        sort: 'asc',
+        width: 100
+      },
+      {
+        label: 'Note',
+        field: 'note',
+        sort: 'asc',
+        width: 200
+      },
+      {
+        label: 'Payment Method',
+        field: 'paymentMethod',
+        sort: 'asc',
+        width: 100
+      },
+      {
+        label: 'Type',
+        field: 'type',
         sort: 'asc',
         width: 100
       },
@@ -46,13 +64,15 @@ const ArchiveDeliveryLogReport = () => {
       // Add your data rows here
       // Example:
       {
-        sl: '1',
-        sender: '8801xxxxxxxxxx',
-        panelOrApi: 'Panel',
-        sendDate: '2023-06-21',
-        dlr: 'Delivered'
+        id: '1',
+        userId: '#',
+        name: 'No data available in table',
+        rechargeDate: 'Showing 0 to 0 of 0 entries',
+        balance: '',
+        note: '',
+        paymentMethod: '',
+        type: ''
       },
-      // ...
     ]
   };
 
@@ -83,7 +103,7 @@ const ArchiveDeliveryLogReport = () => {
       <div className="card mb-5 mb-xl-10">
         <div className="card-header border-0 d-flex justify-content-between">
           <div className="card-title">
-            <h3 className="er mb-0">Archive Delivery Log Report</h3>
+            <h3 className="er mb-0">Transaction History: Recharge To</h3>
           </div>
           <div className="card-title">
             <Link to="/dashboard">
@@ -142,4 +162,4 @@ const ArchiveDeliveryLogReport = () => {
   );
 };
 
-export default ArchiveDeliveryLogReport;
+export default RechargeTo;

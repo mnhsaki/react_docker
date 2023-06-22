@@ -3,7 +3,7 @@ import { MDBDataTable } from 'mdbreact';
 import { Button, Pagination } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const PanelReportDownload = () => {
+const InvoiceCreate = () => {
   const [selectedOption, setSelectedOption] = useState('');
 
   const handleOptionChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
@@ -20,7 +20,7 @@ const PanelReportDownload = () => {
       <div className="card mb-5 mb-xl-10">
         <div className="card-header border-0 d-flex justify-content-between">
           <div className="card-title">
-            <h3 className="er mb-0">Archive SMS History Panel Download</h3>
+            <h3 className="er mb-0">Invoice Create</h3>
           </div>
           <div className="card-title">
             <Link to="/dashboard">
@@ -64,4 +64,4 @@ const PanelReportDownload = () => {
   );
 };
 
-export default PanelReportDownload;
+export default InvoiceCreate;
