@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React from 'react'
 import {useIntl} from 'react-intl'
-import {KTIcon} from '../../../../helpers'
 import {SidebarMenuItemWithSub} from './SidebarMenuItemWithSub'
 import {SidebarMenuItem} from './SidebarMenuItem'
 
@@ -85,7 +84,7 @@ const SidebarMenuMain = () => {
 
      
       
-      <SidebarMenuItemWithSub to='/crafted/contact&group' title='Contact&Group' fontIcon='bi-phone' icon='phone'>
+      <SidebarMenuItemWithSub to='/crafted/contact&group' title='Contact&Group' fontIcon='bi-contactlist' icon='book'>
         <SidebarMenuItem to='/crafted/contact&group/contact_and_group' title='Contact&Group'  hasBullet={true} />
         <SidebarMenuItem to='/crafted/contactandgroup' title='Contact & Group' fontIcon='bi-phone' hasBullet={true} />
         
@@ -95,17 +94,17 @@ const SidebarMenuMain = () => {
       <SidebarMenuItem to='/crafted/smsfiltertext' title='SMS Filter Text'  hasBullet={true} />
       
       
-      <SidebarMenuItemWithSub to='/crafted/users' title='Users' fontIcon='bi-phonebook' icon='phone'>
+      <SidebarMenuItemWithSub to='/crafted/users' title='Users' fontIcon='bi-person' icon='profile-circle'>
       <SidebarMenuItem to='/crafted/users/cloneuser' title='Clone User' hasBullet={true} />
       <SidebarMenuItem to='/crafted/users/createuser' title='Create User' hasBullet={true} />
       <SidebarMenuItem to='/crafted/users/userlist' title='User List' hasBullet={true} />
       </SidebarMenuItemWithSub>
       
-      <SidebarMenuItemWithSub to='/crafted/pricelist' title='Price List' fontIcon='bi-phonebook' icon='phone'>
+      <SidebarMenuItemWithSub to='/crafted/pricelist' title='Price List' fontIcon='bi-contactlist' icon='book'>
       <SidebarMenuItem to='/crafted/pricelist/price' title='Price' hasBullet={true} />
       </SidebarMenuItemWithSub>
       
-      <SidebarMenuItemWithSub to='/crafted/livereports' title='Live Reports' fontIcon='bi-phonebook' icon='phone'>
+      <SidebarMenuItemWithSub to='/crafted/livereports' title='Live Reports' fontIcon='bi bi-broadcast-pin' icon='bi bi-broadcast-pin'>
       <SidebarMenuItem to='/crafted/livereports/todaybroadcast' title='TodayBroadCast' hasBullet={true} />
       <SidebarMenuItem to='/crafted/livereports/todaysms' title='Today SMS' hasBullet={true} />
       <SidebarMenuItem to='/crafted/livereports/smstodayapi' title='SMS Today-API ' hasBullet={true} />
@@ -134,7 +133,7 @@ const SidebarMenuMain = () => {
       <SidebarMenuItem to='/crafted/archive/panelreportdownload' title='Panel Report Download ' hasBullet={true} />
       </SidebarMenuItemWithSub>
 
-      <SidebarMenuItemWithSub to='/crafted/billing/transactionreports' title='Billing' fontIcon='bi-phonebook' icon='phone'>
+      <SidebarMenuItemWithSub to='/crafted/billing/transactionreports' title='Billing' fontIcon='bi bi-reception-4' icon='bi bi-reception-4'>
       <SidebarMenuItem to='/crafted/billing/transactionreports/rechargefrom' title='Recharge Form' hasBullet={true} />
       <SidebarMenuItem to='/crafted/billing/transactionreports/rechargeto' title='Recharge To' hasBullet={true} />
       <SidebarMenuItem to='/crafted/billing/invoice/invoicecreate' title='Invoice Create' hasBullet={true} />
