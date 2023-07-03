@@ -45,6 +45,9 @@ import InvoiceList from '../modules/Billing/Invoice/InvoiceList'
 import Send from '../modules/Schedules/Send'
 import Pending from '../modules/Schedules/Pending'
 import ChangePassword from '../modules/DeveloperOptions/ChangePassword'
+import OpwiseReport from '../modules/SummeryReport/OpwiseReport'
+import SenderwiseReport from '../modules/SummeryReport/SenderwiseReport'
+import OPandSenderwiseReport from '../modules/SummeryReport/OPandSenderwiseReport'
 
 
 
@@ -425,12 +428,48 @@ const PrivateRoutes = () => {
         }>
          
         </Route>
+        <Route
+        path='crafted/Schedules/pending/*'
+        element={
+          <SuspensedView>
+            <Pending/>
+          </SuspensedView>
+        }>
+         
+        </Route>
 
         <Route
         path='crafted/DeveloperOptions/changepassword/*'
         element={
           <SuspensedView>
             <ChangePassword/>
+          </SuspensedView>
+        }>
+         
+        </Route>
+        <Route
+        path='crafted/SummeryReport/opwisereport/*'
+        element={
+          <SuspensedView>
+            <OpwiseReport/>
+          </SuspensedView>
+        }>
+         
+        </Route>
+        <Route
+        path='crafted/SummeryReport/senderwisereport/*'
+        element={
+          <SuspensedView>
+            <SenderwiseReport/>
+          </SuspensedView>
+        }>
+         
+        </Route>
+        <Route
+        path='crafted/SummeryReport/opandSenderwisereport/*'
+        element={
+          <SuspensedView>
+            <OPandSenderwiseReport/>
           </SuspensedView>
         }>
          

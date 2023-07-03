@@ -100,7 +100,7 @@ const SidebarMenuMain = () => {
       <SidebarMenuItem to='/crafted/users/userlist' title='User List' hasBullet={true} />
       </SidebarMenuItemWithSub>
       
-      <SidebarMenuItemWithSub to='/crafted/pricelist' title='Price List' fontIcon='bi-contactlist' icon='book'>
+      <SidebarMenuItemWithSub to='/crafted/pricelist' title='Price List' fontIcon='bi bi-list-task' icon='bi bi-list-columns-reverse'>
       <SidebarMenuItem to='/crafted/pricelist/price' title='Price' hasBullet={true} />
       </SidebarMenuItemWithSub>
       
@@ -112,18 +112,18 @@ const SidebarMenuMain = () => {
       <SidebarMenuItem to='/crafted/livereports/summerylogs' title='Summery Logs ' hasBullet={true} />
       </SidebarMenuItemWithSub>
 
-      <SidebarMenuItemWithSub to='/crafted/monitoring' title='Monitoring' fontIcon='bi-phonebook' icon='phone'>
+      <SidebarMenuItemWithSub to='/crafted/monitoring' title='Monitoring' fontIcon='bi bi-diagram-3' icon='bi bi-diagram-3'>
       <SidebarMenuItem to='/crafted/monitoring/mnobalancenotifyList' title='MNOBalanceNotifyList' hasBullet={true} />
      
       <SidebarMenuItem to='/crafted/monitoring/balancenotificationlog' title='BalanceNotificationLog' hasBullet={true} />
       <SidebarMenuItem to='/crafted/monitoring/balancethreshold' title='Balance Threshold' hasBullet={true} />
       </SidebarMenuItemWithSub>
 
-      <SidebarMenuItemWithSub to='/crafted/settings' title='Settings' fontIcon='bi-phonebook' icon='phone'>
+      <SidebarMenuItemWithSub to='/crafted/settings' title='Settings' fontIcon='bi bi-gear-wide-connected' icon='bi bi-gear-wide-connected'>
       <SidebarMenuItem to='/crafted/settings/logoupdates' title='Logo Updates' hasBullet={true} />
       </SidebarMenuItemWithSub>
 
-      <SidebarMenuItemWithSub to='/crafted/archive' title='Archive' fontIcon='bi-phonebook' icon='phone'>
+      <SidebarMenuItemWithSub to='/crafted/archive' title='Archive' fontIcon='bi bi-file-earmark-spreadsheet' icon='bi bi-file-earmark-spreadsheet'>
       <SidebarMenuItem to='/crafted/archive/broadcasthistory' title='BroadCast History' hasBullet={true} />
       <SidebarMenuItem to='/crafted/archive/smshistory' title='SMS History' hasBullet={true} />
       <SidebarMenuItem to='/crafted/archive/smshistoryapi' title='SMS History-API' hasBullet={true} />
@@ -140,13 +140,20 @@ const SidebarMenuMain = () => {
       <SidebarMenuItem to='/crafted/billing/invoice/invoicelist' title='Invoice List' hasBullet={true} />
       </SidebarMenuItemWithSub>
 
-      <SidebarMenuItemWithSub to='/crafted/schedules' title='Schedules' fontIcon='bi-phonebook' icon='phone'>
+      <SidebarMenuItemWithSub to='/crafted/schedules' title='Schedules' fontIcon='bi bi-calendar-plus' icon='bi bi-calendar-plus'>
       <SidebarMenuItem to='/crafted/schedules/pending' title='Pending' hasBullet={true} />
       <SidebarMenuItem to='/crafted/schedules/send' title='Send' hasBullet={true} />
       </SidebarMenuItemWithSub>
 
-      <SidebarMenuItemWithSub to='/crafted/developeroptions' title='Developer Options' fontIcon='bi-phonebook' icon='phone'>
+      <SidebarMenuItemWithSub to='/crafted/developeroptions' title='Developer Options' fontIcon='bi bi-person-workspace' icon='bi bi-person-workspace'>
       <SidebarMenuItem to='/crafted/developeroptions/changepassword' title='Change Password' hasBullet={true} />
+     
+      </SidebarMenuItemWithSub>
+
+      <SidebarMenuItemWithSub to='/crafted/summeryreport' title='Summery Reports' fontIcon='bi bi-telephone' icon='bi bi-telephone'>
+      <SidebarMenuItem to='/crafted/summeryreport/opwisereport' title='Op Wise Report' hasBullet={true} />
+      <SidebarMenuItem to='/crafted/summeryreport/senderwisereport' title='Sender Wise Report' hasBullet={true} />
+      <SidebarMenuItem to='/crafted/summeryreport/opandSenderwisereport' title='OP & Senderwise Report' hasBullet={true} />
      
       </SidebarMenuItemWithSub>
 
