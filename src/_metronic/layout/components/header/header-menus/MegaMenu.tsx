@@ -138,15 +138,7 @@ const MegaMenu: FC = () => {
         {/* end:Row */}
         <div className='separator separator-dashed mx-lg-5 mt-2 mb-6'></div>
         {/* begin:Layout Builder */}
-        <div className='d-flex flex-stack flex-wrap flex-lg-nowrap gap-2 mb-5 mb-lg-0 mx-lg-5'>
-          <div className='d-flex flex-column me-5'>
-            <div className='fs-6 fw-bold text-gray-800'>Layout Builder</div>
-            <div className='fs-7 fw-semibold text-muted'>Customize view</div>
-          </div>
-          <Link to='/builder' className='btn btn-sm btn-primary fw-bold'>
-            Try Builder
-          </Link>
-        </div>
+       
         {/* end:Layout Builder */}
       </div>
       {/* end:Col */}

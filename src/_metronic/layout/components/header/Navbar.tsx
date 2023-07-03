@@ -43,7 +43,7 @@ const Navbar = () => {
           data-kt-menu-attach='parent'
           data-kt-menu-placement='bottom-end'
         >
-          <img src={toAbsoluteUrl('/media/avatars/300-1.jpg')} alt='' />
+          <img src={toAbsoluteUrl('/media/avatars/iatLogo90x49.png')} alt='' />
         </div>
         <HeaderUserMenu />
       </div>
