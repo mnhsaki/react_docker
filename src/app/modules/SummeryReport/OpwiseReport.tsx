@@ -97,13 +97,11 @@ const OpwiseReport = () => {
                         <Button variant="primary" size="sm" className="me-2">
                             Download
                         </Button>
-                        <Button variant="primary" size="sm">
-                            Export
-                        </Button>
                     </div>
                 </div>
+
                 <div className="card-body">
-                    <div className="row">
+                    <div className="row border border-light p-3 mb-2 bg-secondary text-white">
                         <div className="col-lg-4">
                             <Form.Group controlId="reportType">
                                 <Form.Label>Type</Form.Label>
@@ -124,13 +122,15 @@ const OpwiseReport = () => {
                                 <Form.Label>To</Form.Label>
                                 <Form.Control type="date" name="endDate" value={endDate} onChange={handleDateChange} className="border" />
                             </Form.Group>
+                            
                         </div>
                         <div className="col-lg-12 d-flex justify-content-end mt-3">
-                            <Button variant="primary" size="sm" onClick={handleSearch}>
-                                Search
+                        <Button variant="primary" size="sm" onClick={handleSearch}>
+                            <span id="boot-icon" className="bi bi-search"></span> Search
                             </Button>
                         </div>
                     </div>
+
 
 
                     <MDBDataTable
