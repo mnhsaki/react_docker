@@ -10,8 +10,8 @@ import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
 
 
 
-import SenderId from '../modules/SMSBroadCast/SenderId'
-import SMSCampain from '../modules/SMSBroadCast/SMSCampain'
+
+
 import { GroupSMS } from '../modules/SMSBroadCast/GroupSMS'
 import { ContactFileSMS } from '../modules/SMSBroadCast/ContactFileSMS'
 import { SmartSMS } from '../modules/SMSBroadCast/SmartSMS'
@@ -48,6 +48,12 @@ import ChangePassword from '../modules/DeveloperOptions/ChangePassword'
 import OpwiseReport from '../modules/SummeryReport/OpwiseReport'
 import SenderwiseReport from '../modules/SummeryReport/SenderwiseReport'
 import OPandSenderwiseReport from '../modules/SummeryReport/OPandSenderwiseReport'
+import { SMSCampain } from '../modules/SMSBroadCast/SMSCampain'
+import SpamFilter from '../modules/SpamFilter/SpamFilter'
+import SenderId from '../modules/SMSBroadCast/SenderId'
+
+
+
 
 
 
@@ -134,7 +140,7 @@ const PrivateRoutes = () => {
         path='crafted/smsbroadcast/senderid/*'
         element={
           <SuspensedView>
-            <SenderId />
+            <SenderId/>
           </SuspensedView>
         }>
          
@@ -461,6 +467,15 @@ const PrivateRoutes = () => {
         element={
           <SuspensedView>
             <SenderwiseReport/>
+          </SuspensedView>
+        }>
+         
+        </Route>
+        <Route
+        path='crafted/spamFilter/*'
+        element={
+          <SuspensedView>
+            <SpamFilter/>
           </SuspensedView>
         }>
          

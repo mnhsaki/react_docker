@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Pagination } from 'react-bootstrap';
+import { Button, Form, Pagination } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 interface IDataItem {
@@ -177,20 +177,17 @@ const ContactAndGroup = () => {
             </div>
           </div>
 
-          <div className='col-4'>
-            <div className='card card-custom shadow'>
-              <div className='card-header'>
-                <h3 className='card-title'>Create New Group</h3>
-                <div className='card-toolbar'></div>
-              </div>
-              <div className='card-body p-0'>
-                <input type='text' className='form-control' id='formGroupExampleInput' placeholder='Group Name' />
-                <button type='button' className='btn btn-sm btn-light'>
-                  Submit
-                </button>
-              </div>
+          <div className='col-md-4'>
+          <div className='card'>
+            <div className='card-header'>Create New Group</div>
+            <div className='card-body'>
+              <Form.Control type='text' placeholder='Group Name' />
+              <Button variant='light' className='mt-3'>
+                Submit
+              </Button>
             </div>
           </div>
+        </div>
         </div>
       </div>
       <div className='card mb-5 mb-xl-10'>
@@ -229,53 +226,46 @@ const ContactAndGroup = () => {
                 />
               </div>
               <table className='table table-hover table-rounded table-striped border gy-7 gs-7'>
-                <thead>
-                  <tr className='fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200'>
-                    <th onClick={() => handleSort('name')}>
-                      Name
-                      {getSortSymbol('name')}
-                    </th>
-                    <th onClick={() => handleSort('position')}>
-                      Position
-                      {getSortSymbol('position')}
-                    </th>
-                    <th onClick={() => handleSort('office')}>
-                      Office
-                      {getSortSymbol('office')}
-                    </th>
-                    <th onClick={() => handleSort('age')}>
-                      Age
-                      {getSortSymbol('age')}
-                    </th>
-                    <th onClick={() => handleSort('startDate')}>
-                      Start date
-                      {getSortSymbol('startDate')}
-                    </th>
-                    <th onClick={() => handleSort('salary')}>
-                      Salary
-                      {getSortSymbol('salary')}
-                    </th>
-                    <th onClick={() => handleSort('salary')}>
-                      Action
-                      {getSortSymbol('salary')}
-                    </th>
+              <thead>
+                <tr>
+                  <th onClick={() => handleSort('name')}>
+                    Name
+                    {getSortSymbol('name')}
+                  </th>
+                  <th onClick={() => handleSort('position')}>
+                    Position
+                    {getSortSymbol('position')}
+                  </th>
+                  <th onClick={() => handleSort('office')}>
+                    Office
+                    {getSortSymbol('office')}
+                  </th>
+                  <th onClick={() => handleSort('age')}>
+                    Age
+                    {getSortSymbol('age')}
+                  </th>
+                  <th onClick={() => handleSort('startDate')}>
+                    Start date
+                    {getSortSymbol('startDate')}
+                  </th>
+                  <th onClick={() => handleSort('salary')}>
+                    Salary
+                    {getSortSymbol('salary')}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {currentItems.map((item, index) => (
+                  <tr key={index}>
+                    <td>{item.name}</td>
+                    <td>{item.position}</td>
+                    <td>{item.office}</td>
+                    <td>{item.age}</td>
+                    <td>{item.startDate}</td>
+                    <td>{item.salary}</td>
                   </tr>
-                </thead>
-                <tbody>
-                  {currentItems.map((item, index) => (
-                    <tr key={index}>
-                      <td>{item.name}</td>
-                      <td>{item.position}</td>
-                      <td>{item.office}</td>
-                      <td>{item.age}</td>
-                      <td>{item.startDate}</td>
-                      <td>{item.salary}</td>
-                      <td><Button variant="primary" size="sm">
-                        Action 
-                      </Button>{' '}</td>
-                    </tr>
-                  ))}
-                </tbody>
+                ))}
+              </tbody>
               </table>
               <Pagination>
                 <Pagination.Prev
@@ -301,6 +291,7 @@ const ContactAndGroup = () => {
               </Pagination>
             </div>
           </div>
+          
         </div>
       </div>
     </div>

@@ -47,7 +47,9 @@ const InvoiceCreate = () => {
               </select>
               entries
             </div>
-            <div className="col-sm-6">
+           
+          </div>
+          <div className="col-sm-6">
               <Button
                 variant="primary"
                 size="sm"
@@ -57,7 +59,6 @@ const InvoiceCreate = () => {
                 Select
               </Button>
             </div>
-          </div>
         </div>
       </div>
     </div>
