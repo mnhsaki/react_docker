@@ -56,10 +56,10 @@ const SmartSMS: React.FC = () => {
 
   const [smsText, setSmsText] = useState('');
   const [smsTextCharacterCount, setSmsTextCharacterCount] = useState(0);
-  const [noOfSMS, setNoOfSMS] = useState(0);
+  const [noOfSMS, setNoOfSMS] = useState(1);
   const [smsTextStatndardCharacterCount, setSmsTextStandardCharacterCount] = useState(0);
-  const [smsType, setSmsType] = useState(0);
-
+  const [smsType, setSmsType] = useState(1);
+  
   const countSMSTextCharacter = (value: string) => {
     const count = value.length;
     setSmsText(value);

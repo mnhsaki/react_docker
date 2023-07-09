@@ -1,7 +1,14 @@
 import React from 'react'
 import { KTSVG } from '../../../../_metronic/helpers'
-
-
+import { Table, Form, Button } from 'react-bootstrap';
+const data = [
+  {
+    id: 1,
+    templateName: 'tem1',
+    smsText: 'asdfaf #name# and #roll#',
+    user: 'admin'
+  }
+];
 
 const GroupSMSModal = () => {
   return (
@@ -9,7 +16,7 @@ const GroupSMSModal = () => {
   <div className="modal-dialog">
     <div className="modal-content">
       <div className="modal-header">
-        <h5 className="modal-title">Modal title</h5>
+        <h5 className="modal-title">Add New Message Template</h5>
         <div
           className="btn btn-icon btn-sm btn-active-light-primary ms-2"
           data-bs-dismiss="modal"
@@ -22,20 +29,38 @@ const GroupSMSModal = () => {
         </div>
       </div>
       <div className="modal-body">
-        <p>Modal body text goes here.</p>
+      <div>
+      <Form>
+        <Form.Group>
+          <Form.Control type="text" placeholder="Search" />
+        </Form.Group>
+      </Form>
+
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Template Name</th>
+            <th>SMS Text</th>
+            <th>User</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((item) => (
+            <tr key={item.id}>
+              <td><button type="button" className="btn btn-primary btn-sm btn-xs">Use</button></td>
+              <td>{item.templateName}</td>
+              <td>{item.smsText}</td>
+              <td>{item.user}</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+
+      <p>Showing 1 to {data.length} of {data.length} entries</p>
+    </div>
       </div>
-      <div className="modal-footer">
-        <button
-          type="button"
-          className="btn btn-light"
-          data-bs-dismiss="modal"
-        >
-          Close
-        </button>
-        <button type="button" className="btn btn-primary">
-          Save changes
-        </button>
-      </div>
+     
     </div>
   </div>
 </div>

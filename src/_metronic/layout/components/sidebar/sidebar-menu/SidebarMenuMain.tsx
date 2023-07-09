@@ -157,6 +157,10 @@ const SidebarMenuMain = () => {
      
       </SidebarMenuItemWithSub>
 
+      <SidebarMenuItemWithSub to='/crafted/SpamFilter' title='SpamFilter' fontIcon='bi bi-telephone' icon='bi bi-telephone'>
+      <SidebarMenuItem to='/crafted/SpamFilter/spamfilter' title='Spam Filter' hasBullet={true} />
+      </SidebarMenuItemWithSub>
+
       {/* <SidebarMenuItemWithSub to='/error' title='Errors' fontIcon='bi-sticky' icon='cross-circle'>
         <SidebarMenuItem to='/error/404' title='Error 404' hasBullet={true} />
         <SidebarMenuItem to='/error/500' title='Error 500' hasBullet={true} />
