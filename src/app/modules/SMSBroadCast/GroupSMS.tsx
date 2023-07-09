@@ -106,7 +106,7 @@ const GroupSMS: React.FC = () => {
         aria-controls='kt_account_profile_details'
       >
         <div className='card-title m-0'>
-          <h3 className='er m-0'>GroupP SMS <span className='form-text'>:: Send SMS To Contact Group</span></h3>
+          <h3 className='er m-0'>Group SMS <span className='form-text'>:: Send SMS To Contact Group</span></h3>
         </div>
 
         <div className='card-title m-0'>
