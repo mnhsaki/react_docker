@@ -293,7 +293,7 @@ const SMSCampain: React.FC = () => {
           
           <div className='card-footer d-flex justify-content-end py-6 px-9'>
            
-            <button type='submit' className='btn btn-primary' disabled={loading}>
+            <button type='submit' className='btn btn-primary btn-sm' disabled={loading}>
               {!loading && 'Submit'}
               {loading && (
                 <span className='indicator-progress' style={{ display: 'block' }}>

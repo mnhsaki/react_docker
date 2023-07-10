@@ -308,11 +308,11 @@ const GroupSMS: React.FC = () => {
           
           
           <div className='card-footer d-flex justify-content-end py-6 px-9'>
-            <button type='button' className='btn btn-danger me-2 col-sm-2' onClick={handleCancel}>
+            <button type='button' className='btn btn-danger me-2 btn-sm' onClick={handleCancel} style={{ marginRight: '10px' }}>
               Cancel
             </button>
-            <button type='submit' className='btn btn-primary' disabled={loading}>
-              {!loading && 'Save Changes'}
+            <button type='submit' className='btn btn-primary btn-sm' disabled={loading}>
+              {!loading && 'Submit'}
               {loading && (
                 <span className='indicator-progress' style={{ display: 'block' }}>
                   Please wait...{' '}
@@ -321,6 +321,7 @@ const GroupSMS: React.FC = () => {
               )}
             </button>
           </div>
+
         </form>
       </div>
     </div>
