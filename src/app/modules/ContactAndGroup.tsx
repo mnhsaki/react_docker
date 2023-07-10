@@ -187,11 +187,11 @@ const ContactAndGroup = () => {
         <div className='card-header d-flex justify-content-between align-items-center'>
           <h3 className='m-0'>Contact List</h3>
           <div>
-            <Button variant='primary' size='sm'>
-              Create Contact
+            <Button variant='success' size='sm'>
+            <i className="bi-plus-circle-dotted"></i> Create Contact
             </Button>{' '}
-            <Button variant='info' size='sm'>
-              Upload Contact
+            <Button variant='primary' size='sm'>
+            <i className="bi-download"></i>    Upload Contact
             </Button>
           </div>
         </div>
