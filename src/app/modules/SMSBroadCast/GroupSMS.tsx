@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { IProfileDetails, profileDetailsInitValues as initialValues } from '../SMSBroadCast/SettingsModel'
 import * as Yup from 'yup'
@@ -95,6 +95,10 @@ const GroupSMS: React.FC = () => {
     { value: '003', label: '003' }
   ]
 
+  useEffect(() => {
+    document.title = 'GroupSMS';
+  }, []);
+  
   return (
     <div className='card mb-5 mb-xl-10'>
       <div

@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { KTSVG } from '../../../_metronic/helpers/components/KTSVG'
 
 
 
 
 const AddNewFilterModal = () => {
+
   return (
     <div className="modal fade" tabIndex={-1} id="kt_modal_1">
   <div className="modal-dialog">

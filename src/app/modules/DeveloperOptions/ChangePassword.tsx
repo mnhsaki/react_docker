@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const ChangePassword = () => {
@@ -23,64 +23,50 @@ const ChangePassword = () => {
   };
 
   return (
-    <div className='card mb-5 mb-xl-10'>
-      <div
-        className='card-header border-0 cursor-pointer'
-        role='button'
-        data-bs-toggle=''
-        data-bs-target='#kt_account_profile_details'
-        aria-expanded='true'
-        aria-controls='kt_account_profile_details'
-      >
-        <div className='card-title m-0'>
-          <h3 className='er m-0'>
-            Change Password <span className='form-text'></span>
-          </h3>
-        </div>
-
-        <div className='card-title m-0'>
-          <Link to='/dashboard'>
-            <Button variant='primary' size='sm'>
-              Dashboard
-            </Button>
-          </Link>
-        </div>
-      </div>
-
-      <div>
-        <form>
-          
-          <div className="form-group">
-            <label htmlFor="exampleInputPassword1">Old Password</label>
-            <input
-              type="password"
-              className="form-control"
-              id="exampleInputPassword1"
+    <Card className='mb-5 mb-xl-10'>
+      <Card.Header className='d-flex justify-content-between align-items-center'>
+        <h3 className='m-0'>Change Password</h3>
+        <Link to='/dashboard'>
+          <Button variant='primary' size='sm'>
+            Dashboard
+          </Button>
+        </Link>
+      </Card.Header>
+      <Card.Body>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group>
+            <Form.Label>Old Password <i className="bi-key"></i></Form.Label>
+            <Form.Control
+              type='password'
+              value={oldPassword}
+              onChange={(e) => setOldPassword(e.target.value)}
+              required
             />
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleInputPassword1">New Password</label>
-            <input
-              type="password"
-              className="form-control"
-              id="exampleInputPassword1"
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>New Password <i className="bi-key"></i></Form.Label>
+            <Form.Control
+              type='password'
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              required
             />
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleInputPassword1">Confirm Password</label>
-            <input
-              type="password"
-              className="form-control"
-              id="exampleInputPassword1"
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Confirm Password <i className="bi-key"></i></Form.Label>
+            <Form.Control
+              type='password'
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
             />
-          </div>
-          <button type="submit" className="btn btn-primary">
+          </Form.Group>
+          <Button type='submit' variant='primary'>
             Submit
-          </button>
-
-        </form>
-      </div>
-    </div>
+          </Button>
+        </Form>
+      </Card.Body>
+    </Card>
   );
 };
 

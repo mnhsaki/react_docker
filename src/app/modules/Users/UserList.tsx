@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table, Pagination, Form, Row, Col } from 'react-bootstrap';
 
 const UserList = () => {
@@ -125,6 +125,11 @@ const UserList = () => {
           item.contactNo.toLowerCase().includes(searchQuery.toLowerCase())
       )
     : sortedItems;
+
+    useEffect(() => {
+      document.title = 'UserList';
+    }, []);
+  
 
   return (
     <div>

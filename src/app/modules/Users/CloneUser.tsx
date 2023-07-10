@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
@@ -36,6 +36,10 @@ const CloneUser = () => {
       {file.name} - {file.size} bytes
     </li>
   ));
+
+  useEffect(() => {
+    document.title = 'CloneUser';
+  }, []);
 
   return (
     <div>

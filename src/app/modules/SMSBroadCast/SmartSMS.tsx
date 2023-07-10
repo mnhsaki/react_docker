@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { IProfileDetails, profileDetailsInitValues as initialValues } from '../SMSBroadCast/SettingsModel'
 import * as Yup from 'yup'
@@ -103,6 +103,10 @@ const SmartSMS: React.FC = () => {
       {file.name} - {file.size} bytes
     </li>
   ));
+
+  useEffect(() => {
+    document.title = 'SmartSMS';
+  }, []);
 
   return (
     <div className='card mb-5 mb-xl-10'>

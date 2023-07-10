@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Form, Pagination } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -71,6 +71,11 @@ const ContactAndGroup = () => {
     { value: 'strawberry', label: 'Strawberry' },
     { value: 'vanilla', label: 'Vanilla' }
   ]
+
+  useEffect(() => {
+    document.title = 'ContactAndGroup';
+  }, []);
+
   return (
     <div className='card mb-5 mb-xl-10'>
       <div

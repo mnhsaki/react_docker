@@ -157,7 +157,7 @@ const SidebarMenuMain = () => {
      
       </SidebarMenuItemWithSub>
 
-      <SidebarMenuItemWithSub to='/crafted/SpamFilter' title='SpamFilter' fontIcon='bi bi-telephone' icon='bi bi-telephone'>
+      <SidebarMenuItemWithSub to='/crafted/SpamFilter' title='SpamFilter' fontIcon='bi bi-filter' icon='bi bi-filter'>
       <SidebarMenuItem to='/crafted/SpamFilter/spamfilter' title='Spam Filter' hasBullet={true} />
       </SidebarMenuItemWithSub>
 

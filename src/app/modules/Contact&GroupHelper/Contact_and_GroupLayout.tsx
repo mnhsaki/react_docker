@@ -18,6 +18,10 @@ const Contact_and_GroupLayout = () => {
         document.body.style.backgroundImage = 'none'
       }
     }, [mode])
+
+    useEffect(() => {
+      document.title = 'Contact_and_GroupLayout';
+    }, []);
   
     return (
       <div className='d-flex flex-column flex-root'>

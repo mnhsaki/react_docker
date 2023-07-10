@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MDBDataTable } from 'mdbreact';
 import { Button, Pagination, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -97,6 +97,10 @@ const RechargeTo = () => {
     console.log('Start Date:', startDate);
     console.log('End Date:', endDate);
   };
+
+  useEffect(() => {
+    document.title = 'RechargeTo';
+  }, []);
 
   return (
     <div>

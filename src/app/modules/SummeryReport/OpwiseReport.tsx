@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MDBDataTable } from 'mdbreact';
 import { Button, Pagination, Form } from 'react-bootstrap';
 
@@ -87,6 +87,10 @@ const OpwiseReport = () => {
         console.log('End Date:', endDate);
         console.log('Report Type:', reportType);
     };
+
+    useEffect(() => {
+        document.title = 'OpwiseReport';
+      }, []);
 
     return (
         <div className="container mt-5">

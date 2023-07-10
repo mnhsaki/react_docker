@@ -1,9 +1,21 @@
-import React from 'react';
-import { Button } from 'react-bootstrap';
+import React, { useEffect } from 'react';
+import { Button, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import AddNewFilterModal from './AddNewFilterModal';
 
 const SpamFilter = () => {
+
+  const data = [
+    { id: 1, name: 'John Doe', age: 25 },
+    { id: 2, name: 'Jane Smith', age: 30 },
+    // Add more data entries here...
+  ];
+
+
+  useEffect(() => {
+    document.title = 'SpamFilter';
+  }, []);
+
   return (
     <div>
       <div className='card mb-5 mb-xl-10'>
@@ -40,6 +52,26 @@ const SpamFilter = () => {
           </div>
         </div>
       </div>
+
+      <Table striped bordered hover>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((entry) => (
+          <tr key={entry.id}>
+            <td>{entry.id}</td>
+            <td>{entry.name}</td>
+            <td>{entry.age}</td>
+          </tr>
+        ))}
+      </tbody>
+    </Table>
+
     </div>
   );
 };

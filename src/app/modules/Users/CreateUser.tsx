@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useDropzone } from 'react-dropzone';
 import DualListBox from 'react-dual-listbox';
@@ -45,6 +45,10 @@ const CreateUser = () => {
   ];
 
   const [selected, setSelected] = useState<string[]>([]);
+
+  useEffect(() => {
+    document.title = 'CreateUser';
+  }, []);
 
   return (
     <div>

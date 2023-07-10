@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { IProfileDetails, profileDetailsInitValues as initialValues } from '../SMSBroadCast/SettingsModel'
 import * as Yup from 'yup'
@@ -12,6 +12,8 @@ import 'react-datetime-picker/dist/DateTimePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
 import Select from 'react-select'
+
+
 
 const profileDetailsSchema = Yup.object().shape({
   fName: Yup.string().required('First name is required'),
@@ -88,6 +90,11 @@ const QuickSMS: React.FC = () => {
     { value: 'strawberry', label: 'Strawberry' },
     { value: 'vanilla', label: 'Vanilla' }
   ]
+
+  useEffect(() => {
+    document.title = 'QuickSMS';
+  }, []);
+  
   return (
     <div className='card mb-5 mb-xl-10'>
       <div

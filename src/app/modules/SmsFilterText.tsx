@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MDBDataTable } from 'mdbreact';
 import { Button, Pagination, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -65,6 +65,11 @@ const SmsFilterText = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = data.rows.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(data.rows.length / itemsPerPage);
+
+  useEffect(() => {
+    document.title = 'SmsFilterText';
+  }, []);
+
 
   return (
     <div>

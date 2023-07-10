@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MDBDataTable } from 'mdbreact';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -108,6 +108,10 @@ const MNOBalanceNotifyList = () => {
       }
     ]
   };
+
+  useEffect(() => {
+    document.title = 'MNOBalanceNotifyList';
+  }, []);
 
   return (
     <div>

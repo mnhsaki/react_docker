@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 
 import { Table } from 'react-bootstrap';
 import {IProfileDetails, profileDetailsInitValues as initialValues} from './SettingsModel'
@@ -53,6 +53,10 @@ const SMSTemplete: React.FC = () => {
       }, 1000)
     },
   })
+
+  useEffect(() => {
+    document.title = 'SMSTemplete';
+  }, []);
 
   return (
     <div className='card mb-5 mb-xl-10'>

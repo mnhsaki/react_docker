@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MDBDataTable } from 'mdbreact';
 import { Button, Pagination } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -14,6 +14,10 @@ const APIReportDownload = () => {
     // Handle the select button click here
     console.log('Selected option:', selectedOption);
   };
+
+  useEffect(() => {
+    document.title = 'APIReportDownload';
+  }, []);
 
   return (
     <div>

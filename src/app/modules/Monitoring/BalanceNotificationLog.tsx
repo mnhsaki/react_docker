@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MDBDataTable } from 'mdbreact';
 import { Button, Pagination } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -82,6 +82,10 @@ const BalanceNotificationLog = () => {
       }
     ]
   };
+
+  useEffect(() => {
+    document.title = 'BalanceNotificationLog';
+  }, []);
 
   return (
     <div>

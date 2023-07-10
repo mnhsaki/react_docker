@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, useEffect } from 'react';
 import './LogoUpload.css'; // Import the CSS file for styling
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -74,6 +74,10 @@ const LogoUpload = () => {
   const handleUpload = () => {
     // Handle the upload action here
   };
+
+  useEffect(() => {
+    document.title = 'LogoUpdates';
+  }, []);
 
   return (
     <div className='card mb-5 mb-xl-10'>

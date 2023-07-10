@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MDBDataTable } from 'mdbreact';
 import { Button, Pagination, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -111,6 +111,10 @@ const Pending = () => {
     console.log('End Date:', endDate);
     // Implement your search logic here
   };
+
+  useEffect(() => {
+    document.title = 'Pending';
+  }, []);
 
   return (
     <div>
