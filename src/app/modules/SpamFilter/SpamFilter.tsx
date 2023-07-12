@@ -16,9 +16,7 @@ const SpamFilter = () => {
   const [sortBy, setSortBy] = useState<keyof DataEntry>('id');
   
   const data: DataEntry[] = [
-    { id: 1, name: 'John Doe', age: 25 },
-    { id: 2, name: 'Jane Smith', age: 30 },
-    // Add more data entries here...
+    
   ];
 
   const totalPages = Math.ceil(data.length / pageSize);
@@ -98,15 +96,7 @@ const SpamFilter = () => {
           </div>
         </div>
       </div>
-      <div className="page-size-options">
-        <span>Show:</span>
-        <select value={pageSize} onChange={handlePageSizeChange}>
-          <option value={10}>10</option>
-          <option value={50}>50</option>
-          <option value={100}>100</option>
-          <option value={500}>500</option>
-        </select>
-      </div>
+      
       <Table striped bordered hover>
         <thead>
           <tr>

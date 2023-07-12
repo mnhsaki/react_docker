@@ -56,7 +56,8 @@ const SenderId = () => {
         data-bs-toggle='modal'
         data-bs-target='#kt_modal_1'><i className="fas fa-edit"> <SenderIdMaskingModal /></i></Button>
         
-      },
+      }
+     
       
     ]
   };
