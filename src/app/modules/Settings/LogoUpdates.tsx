@@ -96,7 +96,7 @@ const LogoUpload = () => {
         <div className='card-title m-0'>
           <Link to='/dashboard'>
             <Button variant='primary' size='sm'>
-              Dashboard
+              DASHBOARD
             </Button>
           </Link>
         </div>
