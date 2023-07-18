@@ -127,7 +127,7 @@ export function Login() {
       ) : (
         <div className='mb-10 bg-light-info p-8 rounded'>
           <div className='text-info'>
-            Use account <strong>admin@demo.com</strong> and password <strong>demoo</strong> to
+            Use account <strong>admin@demo.com</strong> and password <strong>demo</strong> to
             continue.
           </div>
         </div>
