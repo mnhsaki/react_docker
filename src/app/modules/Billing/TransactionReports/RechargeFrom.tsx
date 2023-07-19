@@ -49,12 +49,13 @@ const RechargeFrom = () => {
       marginLeft: '10px'
     },
     formGroup: {
-      display: 'flex',
-      alignItems: 'center'
-    },
-    formLabel: {
-      marginRight: '10px'
-    },
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: '10px' // Adjust the margin-bottom value as needed
+  },
+  formLabel: {
+    marginRight: '10px'
+  },
     tableContainer: {
       marginTop: '20px'
     },
@@ -201,40 +202,53 @@ const RechargeFrom = () => {
         </div>
 
         <div className="card-body">
-          <div className="d-flex justify-content-between align-items-center">
+          <div className="d-flex justify-content-center align-items-center mb-2 bg-secondary text-white">
             <Form.Group controlId="startDate" style={styles.formGroup}>
-              <Form.Label style={styles.formLabel}>From</Form.Label>
-              <Form.Control type="date" name="startDate" value={startDate} onChange={handleDateChange} />
+              <Form.Label style={styles.formLabel}><span className="input-group-text" id="basic-addon1">From</span></Form.Label>
+              <Form.Control type="date" name="startDate" value={startDate} aria-describedby="basic-addon1" onChange={handleDateChange} />
+
             </Form.Group>
             <Form.Group controlId="endDate" className="d-flex align-items-center" style={styles.formGroup}>
-              <Form.Label style={styles.formLabel}>To</Form.Label>
+              <Form.Label style={styles.formLabel}><span className="input-group-text" id="basic-addon1">To</span></Form.Label>
               <Form.Control type="date" name="endDate" value={endDate} onChange={handleDateChange} />
             </Form.Group>
             <div className='button'>
-              <Button variant="primary" size="sm" onClick={handleSearch} style={styles.button}>
+              <Button variant="primary" size="sm" onClick={handleSearch} style={styles.button}><i className="fa fa-search"></i>
                 Search
               </Button>
-              <CopyToClipboard text="Your text to copy">
-                <Button variant="primary" size="sm" onClick={handleCopy} style={styles.button}>
-                  Copy Text
-                </Button>
-              </CopyToClipboard>
-              {showCopiedMessage && <div className="text-copied" style={styles.textCopied}>Text Copied!</div>}
-              <CSVLink data={currentItems} filename="recharge_data.csv">
-                <Button variant="primary" size="sm" style={styles.button}>
-                  CSV
-                </Button>
-              </CSVLink>
-              <Button variant="primary" size="sm" onClick={() => handleExcel(currentItems)} style={styles.button}>
-                Excel
-              </Button>
-              <PDFDownloadLink document={renderPDF()} fileName="recharge_data.pdf" style={styles.button}>
-                <Button variant="primary" size="sm">
-                  PDF
-                </Button>
-              </PDFDownloadLink>
             </div>
           </div>
+
+          <div className="btn-group  bg-secondary" role="group" aria-label="Basic outlined example">
+            <button type="button" className="btn btn-outline-primary btn-sm" onClick={handleCopy}>
+              Copy
+            </button>
+            {showCopiedMessage && (
+              <div className="text-copied" style={styles.textCopied}>
+                Text Copied!
+              </div>
+            )}
+            <CSVLink data={currentItems} filename="recharge_data.csv">
+              <button type="button" className="btn btn-outline-primary btn-sm">
+                CSV
+              </button>
+            </CSVLink>
+            <button
+              type="button"
+              className="btn btn-outline-primary btn-sm"
+              onClick={() => handleExcel(currentItems)}
+            >
+              Excel
+            </button>
+            <PDFDownloadLink document={renderPDF()} fileName="recharge_data.pdf">
+              <button type="button" className="btn btn-outline-primary btn-sm">
+                PDF
+              </button>
+            </PDFDownloadLink>
+          </div>
+
+
+
           <div style={styles.tableContainer}>
             <MDBDataTable striped bordered small data={{ columns: data.columns, rows: currentItems }} />
           </div>
