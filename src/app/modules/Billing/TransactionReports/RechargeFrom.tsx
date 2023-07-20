@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { MDBDataTable } from 'mdbreact';
-import { Button, Pagination, Form } from 'react-bootstrap';
+import { Button, Pagination, Form, InputGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { CSVLink } from 'react-csv';
@@ -141,6 +141,20 @@ const RechargeFrom = () => {
   const currentItems = data.rows.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(data.rows.length / itemsPerPage);
 
+
+  const getCurrentDate = () => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  useEffect(() => {
+    setStartDate(getCurrentDate());
+    setEndDate(getCurrentDate());
+  }, []);
+
   const handleDateChange = (event: { target: { name: any; value: any; }; }) => {
     const { name, value } = event.target;
     if (name === 'startDate') {
@@ -203,7 +217,7 @@ const RechargeFrom = () => {
 
         <div className="card-body">
           <div className="d-flex justify-content-center align-items-center mb-2 bg-secondary text-white">
-            <Form.Group controlId="startDate" style={styles.formGroup}>
+            {/* <Form.Group controlId="startDate" style={styles.formGroup}>
               <Form.Label style={styles.formLabel}><span className="input-group-text" id="basic-addon1">From</span></Form.Label>
               <Form.Control type="date" name="startDate" value={startDate} aria-describedby="basic-addon1" onChange={handleDateChange} />
 
@@ -211,12 +225,40 @@ const RechargeFrom = () => {
             <Form.Group controlId="endDate" className="d-flex align-items-center" style={styles.formGroup}>
               <Form.Label style={styles.formLabel}><span className="input-group-text" id="basic-addon1">To</span></Form.Label>
               <Form.Control type="date" name="endDate" value={endDate} onChange={handleDateChange} />
-            </Form.Group>
-            <div className='button'>
-              <Button variant="primary" size="sm" onClick={handleSearch} style={styles.button}><i className="fa fa-search"></i>
+            </Form.Group> */}
+
+          <div className='w-75 p-3 d-flex flex-row'>
+          <InputGroup className="mb-3">
+        <InputGroup.Text id="basic-addon1">From</InputGroup.Text>
+        <Form.Control
+          placeholder="Username"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          className='w-50 p-3'
+          type="date" name="startDate" value={startDate} onChange={handleDateChange}
+        />
+      </InputGroup>
+      
+      <InputGroup className="mb-3">
+        <InputGroup.Text id="basic-addon1">To</InputGroup.Text>
+        <Form.Control
+          placeholder="Username"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          className='w-50 p-3'
+          type="date" name="endDate" value={endDate} onChange={handleDateChange}
+        />
+      </InputGroup>
+      <div className='button'>
+              <Button variant="primary" size="sm" onClick={handleSearch} style={styles.button}>
                 Search
               </Button>
             </div>
+          </div>
+
+      
+
+           
           </div>
 
           <div className="btn-group  bg-secondary" role="group" aria-label="Basic outlined example">
