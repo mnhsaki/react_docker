@@ -141,6 +141,17 @@ const RechargeFrom = () => {
   const currentItems = data.rows.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(data.rows.length / itemsPerPage);
 
+// -------------------------------------date time--------------------------------------//
+  
+
+  const handleDateChange = (event: { target: { name: any; value: any; }; }) => {
+    const { name, value } = event.target;
+    if (name === 'startDate') {
+      setStartDate(value);
+    } else if (name === 'endDate') {
+      setEndDate(value);
+    }
+  };
 
   const getCurrentDate = () => {
     const now = new Date();
@@ -155,20 +166,14 @@ const RechargeFrom = () => {
     setEndDate(getCurrentDate());
   }, []);
 
-  const handleDateChange = (event: { target: { name: any; value: any; }; }) => {
-    const { name, value } = event.target;
-    if (name === 'startDate') {
-      setStartDate(value);
-    } else if (name === 'endDate') {
-      setEndDate(value);
-    }
-  };
-
   const handleSearch = () => {
     console.log('Search clicked!');
     console.log('Start Date:', startDate);
     console.log('End Date:', endDate);
   };
+
+  // -------------------------------------date time--------------------------------------//
+
 
   const handleCopy = () => {
     const tableData = currentItems.map((item) => Object.values(item).join('\t')).join('\n');
@@ -176,7 +181,7 @@ const RechargeFrom = () => {
     setShowCopiedMessage(true);
     setTimeout(() => {
       setShowCopiedMessage(false);
-    }, 2000); // Adjust the duration as needed
+    }, 2000); 
   };
 
   useEffect(() => {
@@ -198,7 +203,7 @@ const RechargeFrom = () => {
   );
 
   return (
-    <div>
+    <div >
       <div className="card mb-5 mb-xl-10" style={styles.card}>
         <div className="card-header border-0" style={styles.header}>
           <div className="card-title">
@@ -214,9 +219,9 @@ const RechargeFrom = () => {
             </Link>
           </div>
         </div>
-
+     
         <div className="card-body">
-          <div className="d-flex justify-content-center align-items-center mb-2 bg-secondary text-white">
+          <div role="group" className="d-flex justify-content-center align-items-center mb-2 bg-secondary text-white border border-light">
             {/* <Form.Group controlId="startDate" style={styles.formGroup}>
               <Form.Label style={styles.formLabel}><span className="input-group-text" id="basic-addon1">From</span></Form.Label>
               <Form.Control type="date" name="startDate" value={startDate} aria-describedby="basic-addon1" onChange={handleDateChange} />
@@ -227,38 +232,38 @@ const RechargeFrom = () => {
               <Form.Control type="date" name="endDate" value={endDate} onChange={handleDateChange} />
             </Form.Group> */}
 
-          <div className='w-75 p-3 d-flex flex-row'>
-          <InputGroup className="mb-3">
-        <InputGroup.Text id="basic-addon1">From</InputGroup.Text>
-        <Form.Control
-          placeholder="Username"
-          aria-label="Username"
-          aria-describedby="basic-addon1"
-          className='w-50 p-3'
-          type="date" name="startDate" value={startDate} onChange={handleDateChange}
-        />
-      </InputGroup>
-      
-      <InputGroup className="mb-3">
-        <InputGroup.Text id="basic-addon1">To</InputGroup.Text>
-        <Form.Control
-          placeholder="Username"
-          aria-label="Username"
-          aria-describedby="basic-addon1"
-          className='w-50 p-3'
-          type="date" name="endDate" value={endDate} onChange={handleDateChange}
-        />
-      </InputGroup>
-      <div className='button'>
-              <Button variant="primary" size="sm" onClick={handleSearch} style={styles.button}>
-                Search
-              </Button>
+            <div className='w-75 p-3 d-flex flex-row'>
+              <InputGroup className="mb-3">
+                <InputGroup.Text id="basic-addon1">From</InputGroup.Text>
+                <Form.Control
+                  placeholder="Username"
+                  aria-label="Username"
+                  aria-describedby="basic-addon1"
+                  className='w-50 p-3'
+                  type="date" name="startDate" value={startDate} onChange={handleDateChange}
+                />
+              </InputGroup>
+
+              <InputGroup className="mb-3">
+                <InputGroup.Text id="basic-addon1">To</InputGroup.Text>
+                <Form.Control
+                  placeholder="Username"
+                  aria-label="Username"
+                  aria-describedby="basic-addon1"
+                  className='w-50 p-3'
+                  type="date" name="endDate" value={endDate} onChange={handleDateChange}
+                />
+              </InputGroup>
+              <div className='button'>
+                <Button variant="primary" size="sm" onClick={handleSearch} style={styles.button}>
+                  Search
+                </Button>
+              </div>
             </div>
-          </div>
 
-      
 
-           
+
+
           </div>
 
           <div className="btn-group  bg-secondary" role="group" aria-label="Basic outlined example">
@@ -287,6 +292,13 @@ const RechargeFrom = () => {
                 PDF
               </button>
             </PDFDownloadLink>
+            <button
+              type="button"
+              className="btn btn-outline-primary btn-sm"
+              onClick={() => handleExcel(currentItems)}
+            >
+              Print
+            </button>
           </div>
 
 
