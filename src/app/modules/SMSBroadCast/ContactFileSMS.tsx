@@ -292,7 +292,7 @@ const ContactFileSMS: React.FC = () => {
                         value={selectedDate}
                         onChange={setSelectedDate}
                         className='form-select form-select-solid form-select-lg'
-                        format='MMMM d, yyyy HH:mm'
+                        format='d, yyyy HH:mm'
                         minDate={new Date()}
                         disableClock={true}
                         clearIcon={null}
