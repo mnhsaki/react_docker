@@ -1,6 +1,7 @@
-import React from 'react'
-import { KTSVG } from '../../../../_metronic/helpers'
+import React, { useEffect, useState } from 'react';
+import { KTSVG } from '../../../../_metronic/helpers';
 import { Table, Form, Button } from 'react-bootstrap';
+
 const data = [
   {
     id: 1,
@@ -10,61 +11,98 @@ const data = [
   }
 ];
 
-const ContactFileAndSmsModal = () => {
-  return (
-    <div className="modal fade" tabIndex={-1} id="kt_modal_1">
-  <div className="modal-dialog">
-    <div className="modal-content">
-      <div className="modal-header">
-        <h5 className="modal-title">Add New Message Template</h5>
-        <div
-          className="btn btn-icon btn-sm btn-active-light-primary ms-2"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        >
-          <KTSVG
-            path="/media/icons/duotune/arrows/arr061.svg"
-            className="svg-icon svg-icon-2x"
-          />
-        </div>
-      </div>
-      <div className="modal-body">
-      <div>
-      <Form>
-        <Form.Group>
-          <Form.Control type="text" placeholder="Search" />
-        </Form.Group>
-      </Form>
-
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Template Name</th>
-            <th>SMS Text</th>
-            <th>User</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((item) => (
-            <tr key={item.id}>
-              <td><button type="button" className="btn btn-primary btn-sm btn-xs">Use</button></td>
-              <td>{item.templateName}</td>
-              <td>{item.smsText}</td>
-              <td>{item.user}</td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-
-      <p>Showing 1 to {data.length} of {data.length} entries</p>
-    </div>
-      </div>
-     
-    </div>
-  </div>
-</div>
-  )
+export interface DataFromChild {
+  dataToSend: string;
 }
 
-export default ContactFileAndSmsModal
+interface ChildProps {
+  onDataSend: (data: DataFromChild) => void;
+}
+
+const ContactFileAndSmsModal:React.FC<ChildProps> = ({ onDataSend }) =>  {
+
+  
+
+    const sendDataToParent = () => {
+      const dataToSend: DataFromChild = {
+        dataToSend: data[0].smsText,
+      };
+      onDataSend(dataToSend); // Trigger the callback to send data to the parent
+    };
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const handleUse = () => {
+    // Handle the logic for the "Use" button here
+    console.log('Use button clicked');
+    // You can implement any additional logic here
+  };
+
+  return (
+    <div className="modal fade" tabIndex={-1} id="kt_modal_1">
+      <div className="modal-dialog">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title">Add New Message Template</h5>
+            <div
+              className="btn btn-icon btn-sm btn-active-light-primary ms-2"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <KTSVG
+                path="/media/icons/duotune/arrows/arr061.svg"
+                className="svg-icon svg-icon-2x"
+              />
+            </div>
+          </div>
+          <div className="modal-body">
+            <div>
+              <Form>
+                <Form.Group>
+                  <Form.Control type="text" placeholder="Search" />
+                </Form.Group>
+              </Form>
+
+              <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Template Name</th>
+                    <th>SMS Text</th>
+                    <th>User</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.map((item) => (
+                    <tr key={item.id}>
+                      <td>
+                        <button
+                        onClick={sendDataToParent}
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                          className="btn btn-primary btn-sm btn-xs"
+                        >
+                          Use
+                        </button>
+                      </td>
+                      <td>{item.templateName}</td>
+                      <td>{item.smsText}</td>
+                      <td>{item.user}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+
+              <p>Showing 1 to {data.length} of {data.length} entries</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ContactFileAndSmsModal;

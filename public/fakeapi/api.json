@@ -1,0 +1,11 @@
+[
+            
+    {
+      "_id":"1",
+      "templateName":"asdf",
+      "smsText":"asdfaf #name# and #roll#",
+      "user": "admin"
+     
+    }
+
+]

@@ -7,7 +7,7 @@ import { Button } from 'react-bootstrap'
 import QuickSMSModal from './Modal/QuickSMSModal'
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import ContactFileAndSmsModal from './Modal/ContactFileAndSmsModal'
+import ContactFileAndSmsModal, { DataFromChild } from './Modal/ContactFileAndSmsModal'
 import { Link } from 'react-router-dom'
 import DateTimePicker from 'react-datetime-picker';
 import 'react-datetime-picker/dist/DateTimePicker.css';
@@ -29,6 +29,12 @@ const profileDetailsSchema = Yup.object().shape({
 })
 
 const ContactFileSMS: React.FC = () => {
+  const [receivedData, setReceivedData] = useState<string | null>(null);
+
+  
+
+
+  
   const [data, setData] = useState<IProfileDetails>(initialValues)
   const updateData = (fieldsToUpdate: Partial<IProfileDetails>): void => {
     const updatedData = Object.assign(data, fieldsToUpdate)
@@ -74,6 +80,13 @@ const ContactFileSMS: React.FC = () => {
       setSmsTextStandardCharacterCount(count <= 160 ? 160 : 153);
       setSmsType(1);
     }
+  };
+
+
+  // Define the callback function to receive data from the child
+  const handleDataFromChild = (data: DataFromChild) => {
+    console.log("data",data);
+    setSmsText(data.dataToSend);
   };
 
   const [selectedCommunication, setSelectedCommunication] = useState(data.communications?.email ? 'email' : 'phone');
@@ -146,9 +159,9 @@ const ContactFileSMS: React.FC = () => {
               </div>
             </div>
 
-            <div className='row mb-6'>
-              <label className='col-lg-4 col-form-label required  fs-6'>Select Contact File</label>
-              <div className='col-lg-8 fv-row-3'>
+            <div className="row mb-6">
+              <label className="col-lg-4 col-form-label required fs-6">Select Contact File</label>
+              <div className="col-lg-8 fv-row-3">
                 <section className="container">
                   <div {...getRootProps({ className: 'dropzone' })}>
                     <input {...getInputProps()} />
@@ -210,11 +223,12 @@ const ContactFileSMS: React.FC = () => {
               <label className='col-lg-4 col-form-label required  fs-6'>Enter Sms Content</label>
               <div className='col-lg-8 fv-row-3'>
                 <textarea
+                
                   className='form-control form-control-lg form-control-solid'
                   placeholder='SMS Content'
                   rows={5}
                   style={{ resize: 'vertical', fontSize: '1.0rem' }}
-                  value={formik.values.smsContent}
+                  value={smsText}
                   onChange={(e) => {
                     formik.handleChange(e);
                     countSMSTextCharacter(e.target.value);
@@ -238,7 +252,7 @@ const ContactFileSMS: React.FC = () => {
 
               </div>
             </div>
-            <ContactFileAndSmsModal></ContactFileAndSmsModal>
+            <ContactFileAndSmsModal onDataSend={handleDataFromChild}></ContactFileAndSmsModal>
 
             <div className='row mb-6'>
               <label className='col-lg-4 col-form-label fs-6'>Schedule SMS *</label>
@@ -292,7 +306,7 @@ const ContactFileSMS: React.FC = () => {
                         value={selectedDate}
                         onChange={setSelectedDate}
                         className='form-select form-select-solid form-select-lg'
-                        format='d, yyyy HH:mm'
+                        format='MMMM d, yyyy HH:mm'
                         minDate={new Date()}
                         disableClock={true}
                         clearIcon={null}
