@@ -26,15 +26,14 @@ const DashboardPage: FC = () => (
       <div className='col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10'>
         <CardsWidget20
           className='h-md-50 mb-5 mb-xl-10'
-          description='Active Projects'
-          color='#F1416C'
-          img={toAbsoluteUrl('/media/patterns/vector-1.png')}
+          description='Balance'
+          color='#F1416C' img={''}          
         />
         <CardsWidget7
           className='h-md-50 mb-5 mb-xl-10'
-          description='Professionals'
+          description='BDT'
           icon={false}
-          stats={357}
+          stats={248.30}
           labelColor='dark'
           textColor='gray-300'
         />
