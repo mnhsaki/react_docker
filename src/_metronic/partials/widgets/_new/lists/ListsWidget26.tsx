@@ -29,7 +29,7 @@ const ListsWidget26 = ({className}: Props) => (
   </div>
 </div>
       
-    </div>
+</div>
     
   
 )

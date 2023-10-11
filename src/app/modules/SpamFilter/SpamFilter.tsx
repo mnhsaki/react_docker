@@ -14,9 +14,9 @@ const SpamFilter = () => {
   const [pageSize, setPageSize] = useState(10);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [sortBy, setSortBy] = useState<keyof DataEntry>('id');
-  
+
   const data: DataEntry[] = [
-    
+
   ];
 
   const totalPages = Math.ceil(data.length / pageSize);
@@ -47,7 +47,7 @@ const SpamFilter = () => {
   };
 
   const sortedData = [...data].sort((a, b) => {
-    if (sortOrder === 'asc') {
+  if(sortOrder === 'asc') {
       if (a[sortBy] < b[sortBy]) return -1;
       if (a[sortBy] > b[sortBy]) return 1;
       return 0;
@@ -60,7 +60,7 @@ const SpamFilter = () => {
 
   return (
     <div>
-      
+
 
       <div className='card mb-5 mb-xl-10'>
         <div
@@ -96,7 +96,7 @@ const SpamFilter = () => {
           </div>
         </div>
       </div>
-      
+
       <Table striped bordered hover>
         <thead>
           <tr>

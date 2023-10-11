@@ -1,151 +1,80 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import {FC, useEffect, useRef} from 'react'
-import {KTIcon} from '../../../../helpers'
-import {getCSSVariableValue} from '../../../../assets/ts/_utils'
-import {useThemeMode} from '../../../layout/theme-mode/ThemeModeProvider'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Card } from 'react-bootstrap';
 
 type Props = {
-  className: string
-  chartSize?: number
-  chartLine?: number
-  chartRotate?: number
-}
+  className: string;
+  description: string;
+  color: string;
+  img: string;
+};
 
-const CardsWidget17: FC<Props> = ({
-  className,
-  chartSize = 70,
-  chartLine = 11,
-  chartRotate = 145,
-}) => {
-  const chartRef = useRef<HTMLDivElement | null>(null)
-  const {mode} = useThemeMode()
+type ServerLog = {
+  id: number;
+  ipAddress: number;
+  hostName: string;
+  totalStorage: string;
+  usedStorage: string;
+  usedStoragePercentage: string;
+  availableStorage: string;
+};
+
+const CardsWidget17 = ({ className, description, color, img }: Props) => {
+  const [serverLogs, setServerLogs] = useState<ServerLog[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchData = () => {
+    axios
+      .get('https://dhorolasms.net/api/login_api')
+      .then(response => {
+        setServerLogs(response.data);
+      })
+      .catch(error => {
+        setError(error.message);
+        console.error('Error fetching data:', error);
+      });
+  };
+
   useEffect(() => {
-    refreshChart()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mode])
+    fetchData();
+    const interval = setInterval(fetchData, 10000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
-  const refreshChart = () => {
-    if (!chartRef.current) {
-      return
-    }
-
-    setTimeout(() => {
-      initChart(chartSize, chartLine, chartRotate)
-    }, 10)
+  if (error) {
+    return <div>Error: {error}</div>;
   }
+
+  const displayedLogs = serverLogs.slice(1, 2); // Display only the first 5 logs
 
   return (
-    <div className={`card card-flush ${className}`}>
-      <div className='card-header pt-5'>
-        <div className='card-title d-flex flex-column'>
-          <div className='d-flex align-items-center'>
-            <span className='fs-4 fw-semibold text-gray-400 me-1 align-self-start'>$</span>
+    <div className={`card-deck ${className}`}>
+    {displayedLogs.map(serverLog => (
+      <Card
+        key={serverLog.id}
+        className="text-center"
+        style={{ backgroundColor: color }}
+      >
+        <Card.Header>
+          <Card.Title>HostName: {serverLog.hostName}</Card.Title>
+         
+        </Card.Header>
+        <Card.Body>
+       <Card.Text> Id:{serverLog.id}</Card.Text>
+       <Card.Text> ipAddress:{serverLog.ipAddress}</Card.Text>
+          <Card.Text>Total Storage: {serverLog.totalStorage}</Card.Text>
+          <Card.Text>Used Storage: {serverLog.usedStorage}</Card.Text>
+          <Card.Text>
+            Used Storage Percentage: {serverLog.usedStoragePercentage}
+          </Card.Text>
+          <Card.Text>Available Storage: {serverLog.availableStorage}</Card.Text>
+        </Card.Body>
+      </Card>
+    ))}
+  </div>
+  );
+};
 
-            <span className='fs-2hx fw-bold text-dark me-2 lh-1 ls-n2'>0</span>
-
-            <span className='badge badge-light-success fs-base'>
-              <KTIcon iconName='dollar' className='fs-5 text-success ms-n1' /> 
-            </span>
-          </div>
-          <span className='text-gray-400 pt-1 fw-semibold fs-6'>Cost Last Week</span>
-        </div>
-      </div>
-
-      <div className='card-body pt-2 pb-4 d-flex flex-wrap align-items-center'>
-        <div className='d-flex flex-center me-5 pt-2'>
-          <div
-            id='kt_card_widget_17_chart'
-            ref={chartRef}
-            style={{minWidth: chartSize + 'px', minHeight: chartSize + 'px'}}
-            data-kt-size={chartSize}
-            data-kt-line={chartLine}
-          ></div>
-        </div>
-
-        <div className='d-flex flex-column content-justify-center flex-row-fluid'>
-          <div className='d-flex fw-semibold align-items-center'>
-            <div className='bullet w-8px h-3px rounded-2 bg-success me-3'></div>
-            <div className='text-gray-500 flex-grow-1 me-4'>Today</div>
-            <div className='fw-bolder text-gray-700 text-xxl-end'>$0</div>
-          </div>
-          <div className='d-flex fw-semibold align-items-center my-3'>
-            <div className='bullet w-8px h-3px rounded-2 bg-primary me-3'></div>
-            <div className='text-gray-500 flex-grow-1 me-4'>Last Week</div>
-            <div className='fw-bolder text-gray-700 text-xxl-end'>$0</div>
-          </div>
-          <div className='d-flex fw-semibold align-items-center'>
-            <div
-              className='bullet w-8px h-3px rounded-2 me-3'
-              style={{backgroundColor: '#E4E6EF'}}
-            ></div>
-            <div className='text-gray-500 flex-grow-1 me-4'>Last Month</div>
-            <div className=' fw-bolder text-gray-700 text-xxl-end'>$0</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-const initChart = function (
-  chartSize: number = 0,
-  chartLine: number = 0,
-  chartRotate: number = 0
-) {
-  const el = document.getElementById('kt_card_widget_17_chart')
-  if (!el) {
-    return
-  }
-  el.innerHTML = ''
-
-  var options = {
-    size: chartSize,
-    lineWidth: chartLine,
-    rotate: chartRotate,
-    //percent:  el.getAttribute('data-kt-percent') ,
-  }
-
-  const canvas = document.createElement('canvas')
-  const span = document.createElement('span')
-
-  // @ts-ignore
-  if (typeof G_vmlCanvasManager !== 'undefined') {
-    // @ts-ignore
-    G_vmlCanvasManager.initElement(canvas)
-  }
-
-  const ctx = canvas.getContext('2d')
-  canvas.width = canvas.height = options.size
-
-  el.appendChild(span)
-  el.appendChild(canvas)
-
-  // @ts-ignore
-  ctx.translate(options.size / 2, options.size / 2) // change center
-  // @ts-ignore
-  ctx.rotate((-1 / 2 + options.rotate / 180) * Math.PI) // rotate -90 deg
-
-  //imd = ctx.getImageData(0, 0, 240, 240);
-  const radius = (options.size - options.lineWidth) / 2
-
-  const drawCircle = function (color: string, lineWidth: number, percent: number) {
-    percent = Math.min(Math.max(0, percent || 1), 1)
-    if (!ctx) {
-      return
-    }
-
-    ctx.beginPath()
-    ctx.arc(0, 0, radius, 0, Math.PI * 2 * percent, false)
-    ctx.strokeStyle = color
-    ctx.lineCap = 'round' // butt, round or square
-    ctx.lineWidth = lineWidth
-    ctx.stroke()
-  }
-
-  // Init 2
-  drawCircle('#E4E6EF', options.lineWidth, 100 / 100)
-  drawCircle(getCSSVariableValue('--bs-primary'), options.lineWidth, 100 / 150)
-  drawCircle(getCSSVariableValue('--bs-success'), options.lineWidth, 100 / 250)
-}
-
-export {CardsWidget17}
+export { CardsWidget17 };

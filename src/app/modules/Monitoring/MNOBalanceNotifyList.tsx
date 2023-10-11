@@ -40,6 +40,7 @@ const MNOBalanceNotifyList = () => {
             <Button variant="warning" size="sm" className="mr-2">
               <i className="fas fa-edit"></i>
             </Button>
+            
             <Button variant="danger" size="sm">
               <i className="fas fa-trash"></i>
             </Button>

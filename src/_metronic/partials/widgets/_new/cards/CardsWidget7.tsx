@@ -1,74 +1,80 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import clsx from 'clsx'
-import {toAbsoluteUrl} from '../../../../helpers'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Card } from 'react-bootstrap';
 
 type Props = {
-  className: string
-  description: string
-  icon: boolean
-  stats: number
-  labelColor: string
-  textColor: string
-}
+  className: string;
+  description: string;
+  color: string;
+  img: string;
+};
 
-const items: Array<{
-  name: string
-  initials?: string
-  src?: string
-  state?: string
-}> = [
-  {name: 'Alan Warden', initials: 'A', state: 'warning'},
-  {name: 'Michael Eberon', src: toAbsoluteUrl('/media/avatars/300-11.jpg')},
-  {name: 'Susan Redwood', initials: 'S', state: 'primary'},
-  {name: 'Melody Macy', src: toAbsoluteUrl('/media/avatars/300-2.jpg')},
-  {name: 'Perry Matthew', initials: 'P', state: 'danger'},
-  {name: 'Barry Walter', src: toAbsoluteUrl('/media/avatars/300-12.jpg')},
-]
+type ServerLog = {
+  id: number;
+  ipAddress: number;
+  hostName: string;
+  totalStorage: string;
+  usedStorage: string;
+  usedStoragePercentage: string;
+  availableStorage: string;
+};
 
-const CardsWidget7 = ({className, description, icon, stats, labelColor, textColor}: Props) => (
-  <div className={`card card-flush ${className}`}>
-    <div className='card-header pt-5'>
-      <div className='card-title d-flex flex-column'>
-        <div className='card-title d-flex flex-column'>
-          <span className='fs-2hx fw-bold text-dark me-2 lh-1 ls-n2'>{stats}</span>
-          <span className='text-gray-400 pt-1 fw-semibold fs-6'>{description}</span>
-        </div>
-      </div>
-    </div>
-    <div className='card-body d-flex flex-column justify-content-end pe-0'>
-      <span className='fs-6 fw-bolder text-gray-800 d-block mb-2'></span>
-      <div className='symbol-group symbol-hover flex-nowrap'>
-        {items.map((item, index) => (
-          <div
-            className='symbol symbol-35px symbol-circle'
-            data-bs-toggle='tooltip'
-            title={item.name}
-            key={`cw7-item-${index}`}
-          >
-            {item.src && <img alt='Pic' src={item.src} />}
-            {item.state && item.initials && (
-              <span
-                className={clsx(
-                  'symbol-label fw-bold',
-                  'bg-' + item.state,
-                  'text-inverse-' + item.state
-                )}
-              >
-                {item.initials}
-              </span>
-            )}
-          </div>
-        ))}
+const CardsWidget7 = ({ className, description, color, img }: Props) => {
+  const [serverLogs, setServerLogs] = useState<ServerLog[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
-        <a href='#' className='symbol symbol-35px symbol-circle'>
-          <span
-            className={clsx('symbol-label fs-8 fw-bold', 'bg-' + labelColor, 'text-' + textColor)}
-          >
-            +42
-          </span>
-        </a>
-      </div>
-    </div>
+  const fetchData = () => {
+    axios
+      .get('http://167.71.199.212:8989/sms/getServerLogList')
+      .then(response => {
+        setServerLogs(response.data);
+      })
+      .catch(error => {
+        setError(error.message);
+        console.error('Error fetching data:', error);
+      });
+  };
+
+  useEffect(() => {
+    fetchData();
+    const interval = setInterval(fetchData, 10000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  const displayedLogs = serverLogs.slice(2, 3); // Display only the first 5 logs
+
+  return (
+    <div className={`card-deck ${className}`}>
+    {displayedLogs.map(serverLog => (
+      <Card
+        key={serverLog.id}
+        className="text-center"
+        style={{ backgroundColor: color }}
+      >
+        <Card.Header>
+          <Card.Title>HostName: {serverLog.hostName}</Card.Title>
+         
+        </Card.Header>
+        <Card.Body>
+       <Card.Text> Id:{serverLog.id}</Card.Text>
+       <Card.Text> ipAddress:{serverLog.ipAddress}</Card.Text>
+          <Card.Text>Total Storage: {serverLog.totalStorage}</Card.Text>
+          <Card.Text>Used Storage: {serverLog.usedStorage}</Card.Text>
+          <Card.Text>
+            Used Storage Percentage: {serverLog.usedStoragePercentage}
+          </Card.Text>
+          <Card.Text>Available Storage: {serverLog.availableStorage}</Card.Text>
+        </Card.Body>
+      </Card>
+    ))}
   </div>
-)
-export {CardsWidget7}
+  );
+};
+
+export { CardsWidget7 };

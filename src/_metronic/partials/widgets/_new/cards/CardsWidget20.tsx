@@ -1,34 +1,80 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Card } from 'react-bootstrap';
+
 type Props = {
-  className: string
-  description: string
-  color: string
-  img: string
-}
+  className: string;
+  description: string;
+  color: string;
+  img: string;
+};
 
-const CardsWidget20 = ({className, description, color, img}: Props) => (
-  <div
-    className={`card card-flush bgi-no-repeat bgi-size-contain bgi-position-x-end ${className}`}
-    style={{
-      backgroundColor: color,
-      backgroundImage: `url('${img}')`,
-    }}
-  >
-    <div className='card-header pt-5'>
-      <div className='card-title d-flex flex-column'>
-        <span className='fs-2hx fw-bold text-white me-2 lh-1 ls-n2'>0</span>
+type ServerLog = {
+  id: number;
+  ipAddress: number;
+  hostName: string;
+  totalStorage: string;
+  usedStorage: string;
+  usedStoragePercentage: string;
+  availableStorage: string;
+};
 
-        <span className='text-white opacity-75 pt-1 fw-semibold fs-6'>SMS Last Week</span>
-      </div>
-    </div>
-    <div className='card-body d-flex align-items-end pt-0'>
-      <div className='d-flex align-items-center flex-column mt-3 w-100'>
-        <div className='d-flex justify-content-between fw-bold fs-6 text-white opacity-75 w-100 mt-auto mb-2'>
+const CardsWidget20 = ({ className, description, color, img }: Props) => {
+  const [serverLogs, setServerLogs] = useState<ServerLog[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchData = () => {
+    axios
+      .get('http://167.71.199.212:8989/sms/getServerLogList')
+      .then(response => {
+        setServerLogs(response.data);
+      })
+      .catch(error => {
+        setError(error.message);
+        console.error('Error fetching data:', error);
+      });
+  };
+
+  useEffect(() => {
+    fetchData();
+    const interval = setInterval(fetchData, 10000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  const displayedLogs = serverLogs.slice(0, 1); // Display only the first 5 logs
+
+  return (
+    <div className={`card-deck ${className}`}>
+    {displayedLogs.map(serverLog => (
+      <Card
+        key={serverLog.id}
+        className="text-center"
+        style={{ backgroundColor: color }}
+      >
+        <Card.Header>
+          <Card.Title>HostName: {serverLog.hostName}</Card.Title>
          
-        </div>
-
-       
-      </div>
-    </div>
+        </Card.Header>
+        <Card.Body>
+       <Card.Text> Id:{serverLog.id}</Card.Text>
+       <Card.Text> ipAddress:{serverLog.ipAddress}</Card.Text>
+          <Card.Text>Total Storage: {serverLog.totalStorage}</Card.Text>
+          <Card.Text>Used Storage: {serverLog.usedStorage}</Card.Text>
+          <Card.Text>
+            Used Storage Percentage: {serverLog.usedStoragePercentage}
+          </Card.Text>
+          <Card.Text>Available Storage: {serverLog.availableStorage}</Card.Text>
+        </Card.Body>
+      </Card>
+    ))}
   </div>
-)
-export {CardsWidget20}
+  );
+};
+
+export { CardsWidget20 };
