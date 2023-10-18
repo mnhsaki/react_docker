@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios';
 import {AuthModel, UserModel} from './_models'
 
 const API_URL = process.env.REACT_APP_API_URL
@@ -13,10 +13,34 @@ export const REQUEST_PASSWORD_URL = `${API_URL}/forgot_password`
 
 
 export function login(username: string, password: string) {
+  return axios.post(LOGIN_URL, {
+    username,
+    password,   
+  })
+
   return axios.post<AuthModel>(LOGIN_URL, {
     username,
     password,   
   })
+
+  // const apiUrl = 'https://example.com/api/user/1'; // Replace with your API endpoint
+
+  // axios.post(LOGIN_URL, {
+  //     username,
+  //     password,   
+  //   })
+  //   .then((response: AxiosResponse<AuthModel>) => {
+  //     console.log("response", response);
+  //     const AuthModel = {
+  //       api_token : 'adfasdfasdfasdfasdfasdfasdfasdfadfs'
+  //     }
+
+  //     return response;
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //   });
+
 }
 
 // Server should return AuthModel

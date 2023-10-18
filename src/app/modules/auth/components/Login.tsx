@@ -35,35 +35,54 @@ export function Login() {
     onSubmit: async (values, { setStatus, setSubmitting }) => {
       setLoading(true);
       try {
-        const res = await login(values.username, values.password);
-        let token = res.data;
 
-        let auth = {
-          id : 2,
-          username : "admin",
-          first_name : "Alvena",
-          last_name: "Ward",
-          email: "admgin@demo.com",
-          email_verified_at: "2023-07-12T13:39:05.000000Z",
-          created_at: "2023-07-12T13:39:05.000000Z",
-          updated_at: "2023-07-12T13:39:05.000000Z",
-          api_token: `${token}`
-        }
+        // const {data: auth} = await login(values.username, values.password);
+        const auth = await login(values.username, values.password);
+        console.log("res", auth);
 
-        console.log("auth", auth);
+        // saveAuth(auth)
+        // const {data: user} = await getUserByToken(auth)
+        // setCurrentUser(user)
+        
+
+        // var AuthModel:any = {  
+        //   api_token : res.data
+        // }; 
+
+        // let token = res.data;
+
+        // let auth = {
+        //   id : 2,
+        //   username : "admin",
+        //   first_name : "Alvena",
+        //   last_name: "Ward",
+        //   email: "admgin@demo.com",
+        //   email_verified_at: "2023-07-12T13:39:05.000000Z",
+        //   created_at: "2023-07-12T13:39:05.000000Z",
+        //   updated_at: "2023-07-12T13:39:05.000000Z",
+        //   api_token: `${token}`
+        // }
+
+        // console.log("auth", auth);
 
        
-        saveAuth(auth);
+        // saveAuth(auth);
         
 
 
         // console.log("saveAuth", saveAuth);
         // const { data: user } = await getUserByToken(auth.api_token);
 
+        // var UserModel:any = {  
+        //   api_token : res.data,
+        //   id: 1,
+        //   username: "aminul",
+        //   auth : AuthModel
+        // }; 
 
-        console.log("user", auth);  
 
-        setCurrentUser(auth);
+
+        // setCurrentUser(UserModel);
 
       } catch (error) {
         console.error(error);
