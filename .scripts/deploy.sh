@@ -4,7 +4,8 @@ set -e
 echo "Deployment started..."
 
 # Pull the latest version of the app
-git pull origin master
+cd /var/www/html/smsgw.iatlbd.com/
+git pull origin main
 echo "New changes copied to server !"
 
 echo "Installing Dependencies..."
