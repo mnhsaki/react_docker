@@ -4,7 +4,6 @@ set -e
 echo "Deployment started..."
 
 # Pull the latest version of the app
-cd /var/www/html/smsgw.iatlbd.com/
 
 git pull origin main
 
