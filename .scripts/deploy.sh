@@ -14,6 +14,7 @@ npm install --yes
 
 echo "Creating Production Build..."
 # For ReactJS VueJS and Nuxt JS
+echo "App Build"
 npm run build
 
 # For NextJS
