@@ -5,7 +5,9 @@ echo "Deployment started..."
 
 # Pull the latest version of the app
 cd /var/www/html/smsgw.iatlbd.com/
+
 git pull origin main
+
 echo "New changes copied to server !"
 
 echo "Installing Dependencies..."

@@ -41,4 +41,4 @@ jobs:
 
           script: |
 
-            "cd /var/www/html/smsgw.iatlbd.com/ && ./.scripts/deploy.sh"
+            ./.scripts/deploy.sh
