@@ -78,7 +78,7 @@ const PrivateRoutes = () => {
         <Route path='menu-test' element={<MenuTestPage />} />
         {/* Lazy Modules */}
         <Route
-          path='crafted/pages/profile/*'
+          path='pages/profile/*'
           element={
             <SuspensedView>
               <ProfilePage />
@@ -86,7 +86,7 @@ const PrivateRoutes = () => {
           }
         />
         <Route
-          path='crafted/pages/wizards/*'
+          path='pages/wizards/*'
           element={
             <SuspensedView>
               <WizardsPage />
@@ -94,7 +94,7 @@ const PrivateRoutes = () => {
           }
         />
         <Route
-          path='crafted/widgets/*'
+          path='widgets/*'
           element={
             <SuspensedView>
               <WidgetsPage />
@@ -102,7 +102,7 @@ const PrivateRoutes = () => {
           }
         />
         <Route
-          path='crafted/account/*'
+          path='account/*'
           element={
             <SuspensedView>
               <AccountPage />
@@ -110,7 +110,7 @@ const PrivateRoutes = () => {
           }
         />
         <Route
-        path='crafted/smsbroadcast/quicksms/*'
+        path='smsbroadcast/quicksms/*'
         element={
           <SuspensedView>
             <QuickSMS />
@@ -119,7 +119,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/smsbroadcast/groupsms/*'
+        path='smsbroadcast/groupsms/*'
         element={
           <SuspensedView>
             <GroupSMS />
@@ -128,7 +128,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/smsbroadcast/contactfilesms/*'
+        path='smsbroadcast/contactfilesms/*'
         element={
           <SuspensedView>
             <ContactFileSMS />
@@ -137,7 +137,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/smsbroadcast/senderid/*'
+        path='smsbroadcast/senderid/*'
         element={
           <SuspensedView>
             <SenderId/>
@@ -146,7 +146,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/smsbroadcast/smscampain/*'
+        path='smsbroadcast/smscampain/*'
         element={
           <SuspensedView>
             <SMSCampain />
@@ -155,7 +155,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/smsbroadcast/smartsms/*'
+        path='smsbroadcast/smartsms/*'
         element={
           <SuspensedView>
             <SmartSMS />
@@ -164,7 +164,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/smsbroadcast/*'
+        path='smsbroadcast/*'
         element={
           <SuspensedView>
             <SMSTemplete />
@@ -174,7 +174,7 @@ const PrivateRoutes = () => {
         </Route>
          
         <Route
-        path='crafted/contact&group/*'
+        path='contact&group/*'
         element={
           <SuspensedView>
            
@@ -183,7 +183,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/contactAndgroup/*'
+        path='contactAndgroup/*'
         element={
           <SuspensedView>
            <ContactAndGroup/>
@@ -193,7 +193,7 @@ const PrivateRoutes = () => {
         </Route>
 
         <Route
-        path='crafted/smsfiltertext/*'
+        path='smsfiltertext/*'
         element={
           <SuspensedView>
            <SmsFilterText/>
@@ -202,7 +202,7 @@ const PrivateRoutes = () => {
 
         </Route>
         <Route
-        path='crafted/users/userlist/*'
+        path='users/userlist/*'
         element={
           <SuspensedView>
             <UserList />
@@ -211,7 +211,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/users/cloneuser/*'
+        path='users/cloneuser/*'
         element={
           <SuspensedView>
             <CloneUser />
@@ -220,7 +220,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/users/createuser/*'
+        path='users/createuser/*'
         element={
           <SuspensedView>
             <CreateUser />
@@ -229,7 +229,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/pricelist/price/*'
+        path='pricelist/price/*'
         element={
           <SuspensedView>
             <Price />
@@ -239,7 +239,7 @@ const PrivateRoutes = () => {
         </Route>
 
         <Route
-        path='crafted/livereports/todaybroadcast/*'
+        path='livereports/todaybroadcast/*'
         element={
           <SuspensedView>
             <TodayBroadCast />
@@ -248,7 +248,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/livereports/todaysms/*'
+        path='livereports/todaysms/*'
         element={
           <SuspensedView>
             <TodaySMS />
@@ -257,7 +257,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/livereports/smstodayapi/*'
+        path='livereports/smstodayapi/*'
         element={
           <SuspensedView>
             <SMSTodayAPI />
@@ -266,7 +266,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/livereports/smstodayapireportdownload/*'
+        path='livereports/smstodayapireportdownload/*'
         element={
           <SuspensedView>
             <SMSTodayAPIReportDownload />
@@ -275,7 +275,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/livereports/summerylogs/*'
+        path='livereports/summerylogs/*'
         element={
           <SuspensedView>
             <SummeryLogs />
@@ -284,7 +284,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/Monitoring/mnobalancenotifylist/*'
+        path='Monitoring/mnobalancenotifylist/*'
         element={
           <SuspensedView>
             <MNOBalanceNotifyList />
@@ -293,7 +293,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/Monitoring/balancethreshold/*'
+        path='Monitoring/balancethreshold/*'
         element={
           <SuspensedView>
             <BalanceThreshold />
@@ -302,7 +302,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/Monitoring/balancenotificationlog/*'
+        path='Monitoring/balancenotificationlog/*'
         element={
           <SuspensedView>
             <BalanceNotificationLog />
@@ -312,7 +312,7 @@ const PrivateRoutes = () => {
         </Route>
 
         <Route
-        path='crafted/Settings/logoupdates/*'
+        path='Settings/logoupdates/*'
         element={
           <SuspensedView>
             <LogoUpload />
@@ -322,7 +322,7 @@ const PrivateRoutes = () => {
         </Route>
 
         <Route
-        path='crafted/Archive/broadcasthistory/*'
+        path='Archive/broadcasthistory/*'
         element={
           <SuspensedView>
             <BroadCastHistory />
@@ -332,7 +332,7 @@ const PrivateRoutes = () => {
         </Route>
 
         <Route
-        path='crafted/Archive/smshistory/*'
+        path='Archive/smshistory/*'
         element={
           <SuspensedView>
             <SMSHistory />
@@ -342,7 +342,7 @@ const PrivateRoutes = () => {
         </Route>
 
         <Route
-        path='crafted/Archive/smshistoryapi/*'
+        path='Archive/smshistoryapi/*'
         element={
           <SuspensedView>
             <SMSHistoryAPI />
@@ -351,7 +351,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/Archive/archivedeliverylogreport/*'
+        path='Archive/archivedeliverylogreport/*'
         element={
           <SuspensedView>
             <ArchiveDeliveryLogReport />
@@ -360,7 +360,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/Archive/apireportdownload/*'
+        path='Archive/apireportdownload/*'
         element={
           <SuspensedView>
             <APIReportDownload />
@@ -369,7 +369,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/Archive/panelreportdownload/*'
+        path='Archive/panelreportdownload/*'
         element={
           <SuspensedView>
             <PanelReportDownload/>
@@ -378,7 +378,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/Billing/TransactionReports/rechargefrom/*'
+        path='Billing/TransactionReports/rechargefrom/*'
         element={
           <SuspensedView>
             <RechargeFrom/>
@@ -387,7 +387,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/Billing/TransactionReports/rechargeto/*'
+        path='Billing/TransactionReports/rechargeto/*'
         element={
           <SuspensedView>
             <RechargeTo/>
@@ -396,7 +396,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/Billing/Invoice/invoicecreate/*'
+        path='Billing/Invoice/invoicecreate/*'
         element={
           <SuspensedView>
             <InvoiceCreate/>
@@ -405,7 +405,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/Billing/Invoice/invoicelist/*'
+        path='Billing/Invoice/invoicelist/*'
         element={
           <SuspensedView>
             <InvoiceList/>
@@ -416,7 +416,7 @@ const PrivateRoutes = () => {
 
         
         <Route
-        path='crafted/Schedules/send/*'
+        path='Schedules/send/*'
         element={
           <SuspensedView>
             <Send/>
@@ -426,7 +426,7 @@ const PrivateRoutes = () => {
         </Route>
         
         <Route
-        path='crafted/Schedules/pending/*'
+        path='Schedules/pending/*'
         element={
           <SuspensedView>
             <Pending/>
@@ -435,7 +435,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/Schedules/pending/*'
+        path='Schedules/pending/*'
         element={
           <SuspensedView>
             <Pending/>
@@ -445,7 +445,7 @@ const PrivateRoutes = () => {
         </Route>
 
         <Route
-        path='crafted/DeveloperOptions/changepassword/*'
+        path='DeveloperOptions/changepassword/*'
         element={
           <SuspensedView>
             <ChangePassword/>
@@ -454,7 +454,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/SummeryReport/opwisereport/*'
+        path='SummeryReport/opwisereport/*'
         element={
           <SuspensedView>
             <OpwiseReport/>
@@ -463,7 +463,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/SummeryReport/senderwisereport/*'
+        path='SummeryReport/senderwisereport/*'
         element={
           <SuspensedView>
             <SenderwiseReport/>
@@ -472,7 +472,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/spamFilter/*'
+        path='spamFilter/*'
         element={
           <SuspensedView>
             <SpamFilter/>
@@ -481,7 +481,7 @@ const PrivateRoutes = () => {
          
         </Route>
         <Route
-        path='crafted/SummeryReport/opandSenderwisereport/*'
+        path='SummeryReport/opandSenderwisereport/*'
         element={
           <SuspensedView>
             <OPandSenderwiseReport/>

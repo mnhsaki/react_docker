@@ -7,13 +7,14 @@ import {useFormik} from 'formik'
 import {getUserByToken, login} from '../core/_requests'
 import {toAbsoluteUrl} from '../../../../_metronic/helpers'
 import {useAuth} from '../core/Auth'
+import {AuthModel, UserModel} from '../core/_models'
 
 const loginSchema = Yup.object().shape({
   email: Yup.string()
-    .email('Wrong email format')
-    .min(3, 'Minimum 3 symbols')
-    .max(50, 'Maximum 50 symbols')
-    .required('Email is required'),
+    // .email('Wrong email format')
+    // .min(3, 'Minimum 3 symbols')
+    // .max(50, 'Maximum 50 symbols')
+    .required('User Name is required'),
   password: Yup.string()
     .min(3, 'Minimum 3 symbols')
     .max(50, 'Maximum 50 symbols')
@@ -21,30 +22,60 @@ const loginSchema = Yup.object().shape({
 })
 
 const initialValues = {
-  email: 'admin@demo.com',
-  password: 'demo',
+  email: 'admin@gmail.com',
+  password: 'adminpass',
 }
 
 /*
   Formik+YUP+Typescript:
   https://jaredpalmer.com/formik/docs/tutorial#getfieldprops
   https://medium.com/@maurice.de.beijer/yup-validation-and-typescript-and-formik-6c342578a20e
+  
 */
+
+// function printLabel(labeledObj: UserModel) {
+//   // console.log(labeledObj.label);
+
+
+// }
+
+function printLabel(config: UserModel): { username: string; email: string } {
+  return {
+    username: config.username || "",
+    email: config.email || "",
+    // auth: config.auth || "",
+  };
+}
 
 export function Login() {
   const [loading, setLoading] = useState(false)
   const {saveAuth, setCurrentUser} = useAuth()
+  // const currentUser = {username: "admin", email: "admin@gmail.com"}
 
-  const formik = useFormik({
+  const formik = useFormik({  
     initialValues,
     validationSchema: loginSchema,
     onSubmit: async (values, {setStatus, setSubmitting}) => {
+      // console.log("values",values);
       setLoading(true)
       try {
+        // const res = await login(values.email, values.password);
         const {data: auth} = await login(values.email, values.password)
+        // const res = await login(values.email, values.password)
+        // console.log("AuthModel", AuthModel);
+        console.log("res res",auth);
         saveAuth(auth)
-        const {data: user} = await getUserByToken(auth.api_token)
-        setCurrentUser(user)
+
+        let user = { username: auth.username, email: auth.email };
+        setCurrentUser(user);
+        printLabel(user);
+
+        // UserModel
+
+        // const tr = await getUserByToken(auth.api_token)
+        // const {data: user} = await getUserByToken(auth.api_token)
+        // console.log("user", user);
+        // setCurrentUser(user)
       } catch (error) {
         console.error(error)
         saveAuth(undefined)
@@ -120,7 +151,7 @@ export function Login() {
       </div>
       {/* end::Separator */}
 
-      {formik.status ? (
+      {/* {formik.status ? (
         <div className='mb-lg-15 alert alert-danger'>
           <div className='alert-text font-weight-bold'>{formik.status}</div>
         </div>
@@ -131,13 +162,13 @@ export function Login() {
             continue.
           </div>
         </div>
-      )}
+      )} */}
 
       {/* begin::Form group */}
       <div className='fv-row mb-8'>
-        <label className='form-label fs-6 fw-bolder text-dark'>Email</label>
+        <label className='form-label fs-6 fw-bolder text-dark'>User Name</label>
         <input
-          placeholder='Email'
+          placeholder='User Name'
           {...formik.getFieldProps('email')}
           className={clsx(
             'form-control bg-transparent',
@@ -146,7 +177,7 @@ export function Login() {
               'is-valid': formik.touched.email && !formik.errors.email,
             }
           )}
-          type='email'
+          type='text'
           name='email'
           autoComplete='off'
         />

@@ -1,6 +1,10 @@
 export interface AuthModel {
-  api_token: string
+  api_token?: string
   refreshToken?: string
+  token?: string
+  username?: string
+  email?: string
+
 }
 
 export interface UserAddressModel {
@@ -44,12 +48,12 @@ export interface UserSocialNetworksModel {
 }
 
 export interface UserModel {
-  id: number
+  id?: 1
   username: string
-  password: string | undefined
+  password?: string | undefined
   email: string
-  first_name: string
-  last_name: string
+  first_name?: string
+  last_name?: string
   fullname?: string
   occupation?: string
   companyName?: string

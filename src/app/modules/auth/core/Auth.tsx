@@ -54,6 +54,7 @@ const AuthProvider: FC<WithChildren> = ({children}) => {
   }
 
   return (
+    // console.log("",)
     <AuthContext.Provider value={{auth, saveAuth, currentUser, setCurrentUser, logout}}>
       {children}
     </AuthContext.Provider>
@@ -67,9 +68,12 @@ const AuthInit: FC<WithChildren> = ({children}) => {
   // We should request user by authToken (IN OUR EXAMPLE IT'S API_TOKEN) before rendering the application
   useEffect(() => {
     const requestUser = async (apiToken: string) => {
+      console.log("apiToken", apiToken);
       try {
         if (!didRequest.current) {
           const {data} = await getUserByToken(apiToken)
+          // const rrs = await getUserByToken(apiToken)
+          console.log("rrs", data);
           if (data) {
             setCurrentUser(data)
           }
@@ -87,6 +91,7 @@ const AuthInit: FC<WithChildren> = ({children}) => {
     }
 
     if (auth && auth.api_token) {
+      // console.log("Auth Auth",auth);
       requestUser(auth.api_token)
     } else {
       logout()
