@@ -22,22 +22,10 @@ const loginSchema = Yup.object().shape({
 })
 
 const initialValues = {
-  email: 'admin@gmail.com',
-  password: 'adminpass',
+  email: '',
+  password: '',
 }
 
-/*
-  Formik+YUP+Typescript:
-  https://jaredpalmer.com/formik/docs/tutorial#getfieldprops
-  https://medium.com/@maurice.de.beijer/yup-validation-and-typescript-and-formik-6c342578a20e
-  
-*/
-
-// function printLabel(labeledObj: UserModel) {
-//   // console.log(labeledObj.label);
-
-
-// }
 
 function printLabel(config: UserModel): { username: string; email: string } {
   return {
@@ -49,33 +37,27 @@ function printLabel(config: UserModel): { username: string; email: string } {
 
 export function Login() {
   const [loading, setLoading] = useState(false)
+  const [loginError, setLoginError] = useState(false);
   const {saveAuth, setCurrentUser} = useAuth()
-  // const currentUser = {username: "admin", email: "admin@gmail.com"}
 
   const formik = useFormik({  
     initialValues,
     validationSchema: loginSchema,
     onSubmit: async (values, {setStatus, setSubmitting}) => {
-      // console.log("values",values);
       setLoading(true)
       try {
-        // const res = await login(values.email, values.password);
         const {data: auth} = await login(values.email, values.password)
-        // const res = await login(values.email, values.password)
-        // console.log("AuthModel", AuthModel);
-        console.log("res res",auth);
-        saveAuth(auth)
+        if(auth.api_token === ''){
+          setLoginError(true);
+          setLoading(false);
+        }else{
+          saveAuth(auth)
+          let user = { username: auth.username, email: auth.email };
+          setCurrentUser(user);
+          printLabel(user);
+        }
 
-        let user = { username: auth.username, email: auth.email };
-        setCurrentUser(user);
-        printLabel(user);
 
-        // UserModel
-
-        // const tr = await getUserByToken(auth.api_token)
-        // const {data: user} = await getUserByToken(auth.api_token)
-        // console.log("user", user);
-        // setCurrentUser(user)
       } catch (error) {
         console.error(error)
         saveAuth(undefined)
@@ -217,8 +199,11 @@ export function Login() {
       {/* end::Form group */}
 
       {/* begin::Wrapper */}
+      {loginError ? <h6 className='text-danger'>Invalid User</h6> : ''}
+      
       <div className='d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8'>
         <div />
+        
 
         {/* begin::Link */}
         <Link to='/auth/forgot-password' className='link-primary'>

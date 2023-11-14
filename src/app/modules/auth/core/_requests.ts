@@ -1,12 +1,13 @@
 import axios from 'axios'
 import {AuthModel, UserModel} from './_models'
+import { BASE_URL } from '../../config';
 
 const API_URL = process.env.REACT_APP_API_URL
 
 // export const GET_USER_BY_ACCESSTOKEN_URL = `${API_URL}/verify_token`
-export const GET_USER_BY_ACCESSTOKEN_URL = `http://192.241.135.61:8080/rm/api/user/info`
+export const GET_USER_BY_ACCESSTOKEN_URL = `${BASE_URL}/rm/api/user/info`
 // export const LOGIN_URL = `${API_URL}/login`
-const LOGIN_URL = 'http://192.241.135.61:8080/rm/authenticate/signin'
+const LOGIN_URL = `${BASE_URL}/rm/authenticate/signin`
 export const REGISTER_URL = `${API_URL}/register`
 export const REQUEST_PASSWORD_URL = `${API_URL}/forgot_password`
 
@@ -21,8 +22,6 @@ export const REQUEST_PASSWORD_URL = `${API_URL}/forgot_password`
 // }
 
 
-
-
 export function login(username: string, password: string) {
   
 
@@ -31,46 +30,30 @@ export function login(username: string, password: string) {
       password,
   }).then(response => {
 
-    let result = response;
 
-    console.log("response", response);
-
-    // const { data } = response
+    const { data } = response
     let res = {
       data : {
         'api_token' : response.data.token,
-        'username' : "admin",
-        'email' : "admin@gmail.com",
+        'username' : "",
+        'email' : "",
       }
     }
 
-    // let item = {
-      // data : {
-      //   'api_token' : response.data.api_token,
-      //   'username' : "admin",
-      //   'email' : "admin@gmail.com",
-      // }
-      // data : {
-      //   'config' : response.config,
-      //   'data' : {
-      //     'api_token' : response.data.token,
-      //     'email': response.data.email,
-      //     'id': 2
-      //   },
-      //   'header': response.headers,
-      //   'request': response.request,
-      //   'status': response.status,
-      //   'statusTest': "success"
-      // }
-    // }
-
-    // console.log("item",item);
-
-    // AuthModel: item.data;
+    return res
+  }).catch((err)=> {
+    let res = {
+      data : {
+        'api_token' : '',
+        'username' : "",
+        'email' : "",
+      }
+    }
 
     return res
   });
 }
+
 
 // Server should return AuthModel
 export function register(
