@@ -4,9 +4,17 @@ import {Link} from 'react-router-dom'
 import {useAuth} from '../../../../app/modules/auth'
 import {Languages} from './Languages'
 import {toAbsoluteUrl} from '../../../helpers'
+import { useAppSelector } from "../../../../app/hook";
+import { selectLoggedInUser } from "../../../../app/modules/auth/authSlice";
+
 
 const HeaderUserMenu: FC = () => {
   const {currentUser, logout} = useAuth()
+
+  const user = useAppSelector(selectLoggedInUser);
+
+  // console.log("dashboard login user", user);
+
   return (
     <div
       className='menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px'
@@ -21,8 +29,8 @@ const HeaderUserMenu: FC = () => {
           <div className='d-flex flex-column'>
             <div className='fw-bolder d-flex align-items-center fs-5'>
               {currentUser?.first_name} {currentUser?.first_name}
-              <span className='badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2'>Pro</span>
-            </div>
+              <span className='badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2'>{ user?.userFullName }</span>
+            </div> 
             <a href='#' className='fw-bold text-muted text-hover-primary fs-7'>
               {currentUser?.email}
             </a>
@@ -38,7 +46,7 @@ const HeaderUserMenu: FC = () => {
         </Link>
       </div>
 
-      <div className='menu-item px-5'>
+      {/* <div className='menu-item px-5'>
         <a href='#' className='menu-link px-5'>
           <span className='menu-text'>My Projects</span>
           <span className='menu-badge'>
@@ -105,23 +113,23 @@ const HeaderUserMenu: FC = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      <div className='menu-item px-5'>
+      {/* <div className='menu-item px-5'>
         <a href='#' className='menu-link px-5'>
           My Statements
         </a>
       </div>
 
-      <div className='separator my-2'></div>
+      <div className='separator my-2'></div> */}
 
       <Languages />
 
-      <div className='menu-item px-5 my-1'>
+      {/* <div className='menu-item px-5 my-1'>
         <Link to='/crafted/account/settings' className='menu-link px-5'>
           Account Settings
         </Link>
-      </div>
+      </div> */}
 
       <div className='menu-item px-5'>
         <a onClick={logout} className='menu-link px-5'>

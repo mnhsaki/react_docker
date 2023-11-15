@@ -110,7 +110,7 @@ const PrivateRoutes = () => {
           }
         />
         <Route
-        path='smsbroadcast/quicksms/*'
+        path='smsbroadcast/quicksms'
         element={
           <SuspensedView>
             <QuickSMS />

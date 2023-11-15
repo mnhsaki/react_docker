@@ -54,14 +54,11 @@ export function Login() {
           saveAuth(auth)
           let user = { username: auth.username, email: auth.email };
           setCurrentUser(user);
-          printLabel(user);
         }
 
 
       } catch (error) {
-        console.error(error)
         saveAuth(undefined)
-        setStatus('The login details are incorrect')
         setSubmitting(false)
         setLoading(false)
       }
