@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
-import { IProfileDetails, profileDetailsInitValues as initialValues } from '../SMSBroadCast/SettingsModel'
+// import { IProfileDetails, profileDetailsInitValues  as initialValues } from '../SMSBroadCast/SettingsModel'
+import { QuickSmsForm, QuickSmsFormInitValues as initialValues } from '../SMSBroadCast/SettingsModel'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
 import { Button } from 'react-bootstrap'
@@ -12,42 +13,58 @@ import 'react-datetime-picker/dist/DateTimePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
 import Select from 'react-select'
+// import Select, { Option, ReactSelectProps } from "react-select";
 
 const profileDetailsSchema = Yup.object().shape({
+  senderid: Yup.string().required('Sender Id is required'),
   fName: Yup.string().required('First name is required'),
   lName: Yup.string().required('Last name is required'),
   company: Yup.string().required('Company name is required'),
   contactPhone: Yup.string().required('Contact phone is required'),
   companySite: Yup.string().required('Company site is required'),
-  senderid: Yup.string().required('Sender Id is required'),
   language: Yup.string().required('Language is required'),
   timeZone: Yup.string().required('Time zone is required'),
   currency: Yup.string().required('Currency is required'),
 })
 
+
+
+// quickSmsSchema
+const quickSmsSchema = Yup.object().shape({
+  // senderId: Yup.string().required('Sender Id is required'),
+})
+
 const QuickSMS: React.FC = () => {
-  const [data, setData] = useState<IProfileDetails>(initialValues)
-  const updateData = (fieldsToUpdate: Partial<IProfileDetails>): void => {
+// const QuickSMS = () => {
+  const [data, setData] = useState<QuickSmsForm>(initialValues)
+  const updateData = (fieldsToUpdate: Partial<QuickSmsForm>): void => {
     const updatedData = Object.assign(data, fieldsToUpdate)
     setData(updatedData)
   }
 
   const [loading, setLoading] = useState(false)
-  const formik = useFormik<IProfileDetails>({
+
+  // const formik = useFormik<QuickSmsForm>({
+  const formik = useFormik({
     initialValues,
-    validationSchema: profileDetailsSchema,
+    validationSchema: quickSmsSchema,
     onSubmit: (values) => {
-      setLoading(true)
-      setTimeout(() => {
-        values.communications.email = data.communications.email
-        values.communications.phone = data.communications.phone
-        values.allowMarketing = data.allowMarketing
-        const updatedData = Object.assign(data, values)
-        setData(updatedData)
-        setLoading(false)
-      }, 1000)
+      console.log("values", values);
+      // setLoading(true)
+      // setTimeout(() => {
+        // values.communications.email = data.communications.email
+        // values.communications.phone = data.communications.phone
+        // values.allowMarketing = data.allowMarketing
+        // const updatedData = Object.assign(data, values)
+        // setData(updatedData)
+        // setLoading(false)
+      // }, 1000)
     },
   })
+
+  console.log("formik", formik);
+
+
 
 
 
@@ -56,6 +73,8 @@ const QuickSMS: React.FC = () => {
   const [noOfSMS, setNoOfSMS] = useState(1);
   const [smsTextStatndardCharacterCount, setSmsTextStandardCharacterCount] = useState(0);
   const [smsType, setSmsType] = useState(1);
+
+  const [disableDateTime, setDisableDateTime] = useState<Boolean>(true);
 
   const countSMSTextCharacter = (value: string) => {
     const count = value.length;
@@ -73,23 +92,59 @@ const QuickSMS: React.FC = () => {
     }
   };
 
-  const [selectedCommunication, setSelectedCommunication] = useState(data.communications?.email ? 'email' : 'phone');
-  const [disableDateTime, setDisableDateTime] = useState(selectedCommunication === 'email');
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-  const [value, onChange] = useState(new Date());
+
 
   const handleCancel = () => {
     formik.resetForm();
     // Additional logic or redirection if needed
   };
 
-  const optionsforSenderID = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
+  const senderIds = [
+    { value: 1, label: '01840001672' },
+    { value: 2, label: '01768555552' },
+    { value: 3, label: '01954665566' }
   ]
+
+  const checkUnicode = (text : string)=>{
+    console.log("VALL",text);
+    var isUni = false;
+    var smsLength = 0;
+    var uniCount = 0;
+    var normalCount = 0;
+
+    for (var i = 0, l = text.length; i < l; i++) {
+        if (text.charCodeAt(i) > 255)
+        {
+            uniCount++;
+            isUni = true;
+        } else {
+            normalCount++;
+        }
+    }
+
+    if(isUni){
+      formik.setFieldValue("sms_type", "3")
+    }else{
+      formik.setFieldValue("sms_type", "1")
+    }
+
+   
+
+    // smsLength = normalCount + (uniCount * 2);
+
+    // console.log("isUni isUni",isUni);
+    // console.log("smsLength",smsLength);
+
+    // return {'isUni': isUni, 'smsLength': smsLength};
+
+    // countSMSTextCharacter(e.target.value);
+  }
+
   return (
+    
+
     <div className='card mb-5 mb-xl-10'>
+      
       <div
         className='card-header border-0 cursor-pointer'
         role='button'
@@ -116,35 +171,61 @@ const QuickSMS: React.FC = () => {
         <form onSubmit={formik.handleSubmit} noValidate className='form'>
           <div className='card-body border-top p-9'>
 
+          <div className='row mb-4'>
+              <label className='col-lg-4 col-form-label  fs-6'>
+                <span className='required'>Campaign Name</span>
+              </label>
+
+              <div className='col-lg-8 fv-row'>
+                <input
+                  name="cm_name"
+                  placeholder="Campaign Name"
+                  className='form-control form-control-lg form-control-solid'
+                  value={formik.values.cm_name}
+                  onChange={formik.handleChange}
+                />
+              </div>
+            </div>
+
             <div className='row mb-4'>
               <label className='col-lg-4 col-form-label  fs-6'>
                 <span className='required'>Select Sender ID</span>
               </label>
 
               <div className='col-lg-8 fv-row'>
-                <Select options={optionsforSenderID} />
-                {formik.touched.senderid && formik.errors.senderid && (
-                  <div className='fv-plugins-message-container'>
-                    <div className='fv-help-block'>{formik.errors.senderid}</div>
-                  </div>
-                )}
+                  <Select 
+                    name="senderId"
+                    placeholder='Choose year value'
+                    value={formik.values.senderId}
+                    onChange={selectedOption => {
+                      formik.setFieldValue("senderId", selectedOption)
+                    }}
+                    options={senderIds}
+                  />
               </div>
             </div>
+
+            
 
             <div className='row mb-6'>
               <label className='col-lg-4 col-form-label required  fs-6'>Enter Mobile Numbers</label>
               <div className='col-lg-8 fv-row-3'>
                 <textarea
+                  name="mobile"
                   className='form-control form-control-lg form-control-solid'
                   placeholder='Please start with country code and New Line Separated text-bold'
                   rows={5}
+                  onChange={formik.handleChange}
                   style={{ resize: 'vertical', fontSize: '1.0rem' }}
+                  value={formik.values.mobile}
                 ></textarea>
-                <div className='form-text'>
+                {/* <div className='form-text'>
                   Please start with country code and New Line Separated text-bold.
-                </div>
+                </div> */}
               </div>
             </div>
+
+            {/* sms_type */}
 
             <div className='row mb-6'>
               <label className='col-lg-4 col-form-label  fs-6'>Select SMS Type</label>
@@ -154,17 +235,12 @@ const QuickSMS: React.FC = () => {
                   <label className='form-check form-check-inline form-check-solid me-5'>
                     <input
                       className='form-check-input'
-                      name='communication[]'
+                      name='sms_type'
                       type='radio'
-                      defaultChecked={data.communications?.email}
-                      onChange={() => {
-                        updateData({
-                          communications: {
-                            email: !data.communications?.email,
-                            phone: data.communications?.phone,
-                          },
-                        })
-                      }}
+                      value='1'
+                      disabled={ formik.values.sms_type !== '1' }
+                      checked={formik.values.sms_type === "1"}
+                      onChange={() => formik.setFieldValue("sms_type", "1")}
                     />
                     <span className=' ps-2 fs-6'>Text</span>
                   </label>
@@ -172,17 +248,13 @@ const QuickSMS: React.FC = () => {
                   <label className='form-check form-check-inline form-check-solid'>
                     <input
                       className='form-check-input'
-                      name='communication[]'
+                      name='sms_type'
                       type='radio'
-                      defaultChecked={data.communications?.phone}
-                      onChange={() => {
-                        updateData({
-                          communications: {
-                            email: data.communications?.email,
-                            phone: !data.communications?.phone,
-                          },
-                        })
-                      }}
+                      value='3'
+                      disabled={ formik.values.sms_type !== '3' }
+                      checked={formik.values.sms_type === "3"}
+                      // onChange={() => console.log('o')}
+                      onChange={() => formik.setFieldValue("sms_type", "3")}
                     />
                     <span className=' ps-2 fs-6'>UniCode</span>
                   </label>
@@ -190,18 +262,23 @@ const QuickSMS: React.FC = () => {
               </div>
             </div>
 
+
             <div className='row mb-6'>
               <label className='col-lg-4 col-form-label required  fs-6'>Enter Sms Content</label>
               <div className='col-lg-8 fv-row-3'>
+
                 <textarea
                   className='form-control form-control-lg form-control-solid'
                   placeholder='SMS Content'
                   rows={5}
+                  name='sms_content'
                   style={{ resize: 'vertical', fontSize: '1.0rem' }}
-                  value={formik.values.smsContent}
+                  value={formik.values.sms_content}
+
                   onChange={(e) => {
                     formik.handleChange(e);
-                    countSMSTextCharacter(e.target.value);
+                    checkUnicode(e.target.value);
+                    // countSMSTextCharacter(e.target.value);
                   }}
                 ></textarea>
                 <div className='form-text'>
@@ -224,6 +301,8 @@ const QuickSMS: React.FC = () => {
             </div>
             <QuickSMSModal></QuickSMSModal>
 
+
+
             <div className='row mb-6'>
               <label className='col-lg-4 col-form-label fs-6'>Schedule SMS *</label>
               <div className='col-lg-8 fv-row'>
@@ -231,18 +310,14 @@ const QuickSMS: React.FC = () => {
                   <label className='form-check form-check-inline form-check-solid me-5'>
                     <input
                       className='form-check-input'
-                      name='communication[]'
+                      name='sms_schedule'
                       type='radio'
-                      defaultChecked={selectedCommunication === 'email'}
-                      onChange={() => {
-                        setSelectedCommunication('email');
+                      value='now'
+                      checked={formik.values.sms_schedule === "now"}
+
+                      onChange={(e) => {
+                        formik.setFieldValue("sms_schedule", "now")
                         setDisableDateTime(true);
-                        updateData({
-                          communications: {
-                            email: true,
-                            phone: data.communications?.phone,
-                          },
-                        });
                       }}
                     />
                     <span className='ps-2 fs-6'>Send Now</span>
@@ -250,31 +325,32 @@ const QuickSMS: React.FC = () => {
                   <label className='form-check form-check-inline form-check-solid'>
                     <input
                       className='form-check-input'
-                      name='communication[]'
+                      name='sms_schedule'
                       type='radio'
-                      defaultChecked={selectedCommunication === 'phone'}
+                      value='later'
+                      checked={formik.values.sms_schedule === "later"}
                       onChange={() => {
-                        setSelectedCommunication('phone');
+                        formik.setFieldValue("sms_schedule", "later")
                         setDisableDateTime(false);
-                        updateData({
-                          communications: {
-                            email: data.communications?.email,
-                            phone: true,
-                          },
-                        });
-                      }}
+                      }
+                      }
                     />
                     <span className='ps-2 fs-6'>Send Later</span>
                   </label>
                 </div>
+
                 <div className='col-lg-8'>
+
                   {disableDateTime ? (
-                    <div className='date-time-text'>{selectedDate ? selectedDate.toLocaleString() : ''}</div>
+                    <div className='date-time-text'>{formik.values ? formik.values.schedule_date.toLocaleString() : ''}</div>
                   ) : (
                     <div className='send-later-date-picker'>
                       <DateTimePicker
-                        value={selectedDate}
-                        onChange={setSelectedDate}
+                        value={formik.values.schedule_date}
+                        name="schedule_date"
+                        onChange={(val) => 
+                          formik.setFieldValue("schedule_date", val)
+                        }
                         className='form-select form-select-solid form-select-lg'
                         format='MMMM d, yyyy HH:mm'
                         minDate={new Date()}
@@ -286,9 +362,6 @@ const QuickSMS: React.FC = () => {
                   )}
                 </div>
               </div>
-            </div>
-            <div className='row mb-6'>
-
             </div>
 
           </div>

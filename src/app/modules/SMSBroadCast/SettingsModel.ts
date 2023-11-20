@@ -1,4 +1,5 @@
 export interface IProfileDetails {
+  senderid: string
   smsContent: string | number | readonly string[] | undefined
   avatar: string
   fName: string
@@ -6,7 +7,6 @@ export interface IProfileDetails {
   company: string
   contactPhone: string
   companySite: string
-  senderid: string
   language: string
   timeZone: string
   currency: string
@@ -71,14 +71,52 @@ export interface IDeactivateAccount {
   confirm: boolean
 }
 
+// ==============
+
+export interface QuickSmsForm {
+  // senderId: string | object | number | readonly string[] | undefined
+  cm_name: string
+  senderId: any
+  mobile: string | number | readonly string[] | undefined
+  sms_type: string | number | null,
+  sms_content: string
+  sms_schedule: string
+  schedule_date: any,
+}
+
+
+export const QuickSmsFormInitValues: QuickSmsForm = {
+  cm_name: '',
+  senderId: null,
+  mobile: '',
+  sms_type: '1',
+  sms_content: '',
+  sms_schedule: 'now',
+  schedule_date: new Date(),
+}
+
+export interface options {
+  value: string|number,
+  label: string,
+}
+
+export const optionsValue: options = {
+  value: '',
+  label: '',
+}
+
+
+
+
+// ===============
 export const profileDetailsInitValues: IProfileDetails = {
+  senderid: '',
   avatar: '/media/avatars/300-1.jpg',
   fName: 'Max',
   lName: 'Smith',
   company: 'Keenthemes',
   contactPhone: '044 3276 454 935',
   companySite: 'keenthemes.com',
-  senderid: '',
   language: '',
   timeZone: '',
   currency: '',
@@ -89,6 +127,8 @@ export const profileDetailsInitValues: IProfileDetails = {
   allowMarketing: false,
   smsContent: undefined
 }
+
+
 
 export const updateEmail: IUpdateEmail = {
   newEmail: 'support@keenthemes.com',
@@ -142,4 +182,10 @@ export const notifications: INotifications = {
 
 export const deactivateAccount: IDeactivateAccount = {
   confirm: false,
+}
+
+// =================
+export interface QuickSms {
+  senderId: string | number | readonly string[] | undefined,
+  // name: string
 }
