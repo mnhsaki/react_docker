@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
+import axios from 'axios'
 // import { IProfileDetails, profileDetailsInitValues  as initialValues } from '../SMSBroadCast/SettingsModel'
 import { QuickSmsForm, QuickSmsFormInitValues as initialValues } from '../SMSBroadCast/SettingsModel'
 import * as Yup from 'yup'
@@ -13,7 +14,14 @@ import 'react-datetime-picker/dist/DateTimePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
 import Select from 'react-select'
+import { API_BASE_URL } from '../../modules/config';
+const GET_SENDER_ID = `${API_BASE_URL}/api/gw/senderid/list`
 // import Select, { Option, ReactSelectProps } from "react-select";
+// const {auth, logout, setCurrentUser} = useAuth()
+
+console.log("API_BASE_URL GET_SENDER_ID", GET_SENDER_ID);
+// /api/gw/senderid/list
+
 
 const profileDetailsSchema = Yup.object().shape({
   senderid: Yup.string().required('Sender Id is required'),
@@ -29,6 +37,9 @@ const profileDetailsSchema = Yup.object().shape({
 
 
 
+
+
+
 // quickSmsSchema
 const quickSmsSchema = Yup.object().shape({
   // senderId: Yup.string().required('Sender Id is required'),
@@ -36,6 +47,65 @@ const quickSmsSchema = Yup.object().shape({
 
 const QuickSMS: React.FC = () => {
 // const QuickSMS = () => {
+
+
+  useEffect(()=> {
+
+
+    let data = {
+      pageNumber  : "Hello World!",
+      pageSize: "This is a new post.",
+      assignedBy: "This is a new post.",
+      userId: "This is a new post.",
+      routeConfId  : "This is a new post.",
+    };
+
+
+    // let ls = localStorage.getItem('kt-auth-react-v');
+
+
+    // const lsValue: string | null = localStorage.getItem('kt-auth-react-v')
+
+    // const auth: AuthModel = JSON.parse(lsValue) as AuthModel
+
+    // console.log("Auth",JSON.parse(lsValue));
+
+    // console.log("IS Value",JSON.parse(lsValue));
+
+
+    // console.log("api_token",ls.);
+
+    // const config = {
+    //   headers: { Authorization: `Bearer ${token}` }
+    // };
+
+
+    // axios.post( 
+    //   GET_SENDER_ID,
+    //   data,
+    // ).then(console.log).catch(console.log);
+
+
+
+
+
+    // axios
+    // .post(GET_SENDER_ID, {
+    //   pageNumber  : "Hello World!",
+    //   pageSize: "This is a new post.",
+    //   assignedBy: "This is a new post.",
+    //   userId: "This is a new post.",
+    //   routeConfId  : "This is a new post.",
+    // })
+    // .then((response) => {
+    // });
+
+  }, []);
+
+
+
+
+
   const [data, setData] = useState<QuickSmsForm>(initialValues)
   const updateData = (fieldsToUpdate: Partial<QuickSmsForm>): void => {
     const updatedData = Object.assign(data, fieldsToUpdate)

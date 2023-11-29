@@ -6,6 +6,7 @@ const initialState = {
   loggedInUser: null,
   status: 'idle',
   error: null,
+  api_token: null,
 };
 
 // console.log('sdf', state.auth.loggedInUser)
