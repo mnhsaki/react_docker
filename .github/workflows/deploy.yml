@@ -1,48 +1,33 @@
-name: PRODUCTION CD1
+name: smspanel_react
 
-# Only trigger, when the build workflow succeeded
 on:
-  workflow_run:
-    workflows: ["TEST CD"]
-    types:
-      - completed
-
-# Controls when the action will run. 
-#on:
-  # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ main ]
-  
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
- # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+    branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "multi_store" ]
+
 jobs:
-  # This workflow contains a single job called "build"  
-  deploy:
+  build:
+
     runs-on: ubuntu-latest
-    # Steps represent a sequence of tasks that will be executed as part of the job
+
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it  
-     - name: Deployment in Dev Server
-   #     uses: actions/checkout@v2
-       uses: appleboy/ssh-action@master
+    # - uses: actions/checkout@v3
+    # - name: Set up JDK 17
+    #   uses: actions/setup-java@v3
+    #   with:
+    #     java-version: '17'
+    #     distribution: 'temurin'
+    #     cache: maven
+    # - name: Build with Maven
+    #   run: mvn clean install
 
-       with:
-
-          host: ${{ secrets.SSH_HOST_DEV }}
-
-          key: ${{ secrets.SSH_PRIVATE_KEY_DEV }}
-        
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
-
-          username: ${{ secrets.SSH_USERNAME }}
-
-          port: ${{ secrets.PORT_DEV }}
-
-          script: |
-
-            cd /var/www/html/smsgw.iatlbd.com/
-
-            git checkout main
-
-            git pull origin main
+    - name: Build & push Docker image
+      uses: mr-smithers-excellent/docker-build-push@v5
+      with:
+        image: mnhsaki/smspanel_react
+        tags: latest
+        registry: docker.io
+        dockerfile: Dockerfile
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }} 
